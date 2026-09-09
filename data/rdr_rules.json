@@ -1,0 +1,770 @@
+[
+  {
+    "rule_id": "RDR-CONN-001",
+    "name": "Single endpoint no link - daisy chain issue",
+    "version": 1,
+    "category": "connectivity",
+    "subcategory": "no_link",
+    "description": "User has no network on PC but VoIP phone works on same jack. Extracted from TKT-2026-00101.",
+    "preconditions": {
+      "affected_endpoints_count": 1,
+      "has_phone_on_same_jack": true
+    },
+    "entry_point": "q1_phone_works",
+    "questions": [
+      {
+        "id": "q1_phone_works",
+        "seq": 1,
+        "text": "Does the VoIP phone on the same jack work?",
+        "type": "yes_no",
+        "branches": {
+          "yes": "q2_check_switch",
+          "no": "escalate_jack_faulty"
+        },
+        "help_text": "If phone is fine, the jack and main cable are OK. Isolates to the PC end."
+      },
+      {
+        "id": "q2_check_switch",
+        "seq": 2,
+        "text": "Check the switch port. Is the PC's MAC address in the MAC table?",
+        "type": "yes_no",
+        "branches": {
+          "yes": "escalate_driver_issue",
+          "no": "q3_cable_swap"
+        },
+        "help_text": "MAC absence suggests the PC isn't sending frames. Could be cable or NIC."
+      },
+      {
+        "id": "q3_cable_swap",
+        "seq": 3,
+        "text": "Swap the patch cable between phone and PC. Does PC get DHCP?",
+        "type": "yes_no",
+        "branches": {
+          "yes": "fix_reseat_cable",
+          "no": "escalate_endpoint_nic"
+        },
+        "help_text": "Cable swap isolates cable vs. NIC vs. daisy-chain termination."
+      }
+    ],
+    "fixes": {
+      "fix_reseat_cable": {
+        "title": "Reseat the daisy-chain cable",
+        "steps": [
+          "Unplug the PC-side pigtail connector completely",
+          "Reseat it firmly until the clip locks with an audible click",
+          "Verify DHCP lease on PC (run ipconfig /all)",
+          "Confirm access to network resources (ping gateway, open CRM)",
+          "Monitor for 5 minutes; if stable, close ticket"
+        ],
+        "confidence": 0.95,
+        "root_cause": "physical_layer"
+      },
+      "escalate_driver_issue": {
+        "title": "Escalate: NIC driver or endpoint issue",
+        "steps": [
+          "Cable and jack are healthy, MAC not appearing",
+          "Likely NIC driver failure or endpoint hardware fault",
+          "Escalate to endpoint support or replace device"
+        ],
+        "confidence": 0.60,
+        "root_cause": "hardware_failure"
+      },
+      "escalate_endpoint_nic": {
+        "title": "Escalate: Endpoint NIC or daisy chain termination",
+        "steps": [
+          "PC still offline even after cable swap",
+          "Likely NIC hardware issue or damaged phone-end termination",
+          "Swap with a known-good phone or replace PC endpoint"
+        ],
+        "confidence": 0.70,
+        "root_cause": "hardware_failure"
+      },
+      "escalate_jack_faulty": {
+        "title": "Escalate: Jack or patch panel fault",
+        "steps": [
+          "Both PC and phone offline on same jack",
+          "Jack or patch panel port is faulty",
+          "Contact facilities to re-punch the jack or swap patch panel port"
+        ],
+        "confidence": 0.85,
+        "root_cause": "physical_layer"
+      }
+    },
+    "graph_references": [
+      "endpoint_id → connection.wall_jack_id",
+      "wall_jack_id → patch_panel port → switch_port_id",
+      "switch_port_id → switch.vlan_id"
+    ],
+    "tags": ["physical_layer", "daisy_chain", "quick_fix"],
+    "recurrence": 1,
+    "last_seen": "2026-06-15"
+  },
+
+  {
+    "rule_id": "RDR-CONN-002",
+    "name": "Multi-user outage on single switch - LAG member down",
+    "version": 1,
+    "category": "connectivity",
+    "subcategory": "site_local_outage",
+    "description": "Entire pod (8+ users) loses data and voice simultaneously. Indicates switch failure or backbone link issue. Extracted from TKT-2026-00102.",
+    "preconditions": {
+      "affected_endpoints_count_min": 5,
+      "affected_vlans": [10, 20],
+      "all_same_switch": true,
+      "simultaneous_data_voice_loss": true
+    },
+    "entry_point": "q1_scope",
+    "questions": [
+      {
+        "id": "q1_scope",
+        "seq": 1,
+        "text": "Which users/pods are affected? (e.g. POD-3: 8 people, or POD-1,2,3: 24 people)",
+        "type": "open",
+        "branches": {}
+      },
+      {
+        "id": "q2_which_switch",
+        "seq": 2,
+        "text": "Which switch do all affected users patch into? (e.g. SW-B-02)",
+        "type": "open",
+        "branches": {}
+      },
+      {
+        "id": "q3_uplink_status",
+        "seq": 3,
+        "text": "Check the Meraki dashboard. What is the switch's uplink status?",
+        "type": "choice",
+        "choices": ["green (stable)", "flapping (up/down)", "red (down)"],
+        "branches": {
+          "green (stable)": "q4_vlan_mismatch",
+          "flapping (up/down)": "q5_lag_member",
+          "red (down)": "escalate_no_uplink"
+        },
+        "help_text": "Flapping or red uplink is catastrophic for all downstream users."
+      },
+      {
+        "id": "q4_vlan_mismatch",
+        "seq": 4,
+        "text": "Uplink is green. Check switch VLAN config. Are VLANs 10, 20 allowed on the uplink trunk?",
+        "type": "yes_no",
+        "branches": {
+          "yes": "escalate_firewall",
+          "no": "fix_add_vlans"
+        },
+        "help_text": "Config drift: VLAN was removed from trunk after maintenance."
+      },
+      {
+        "id": "q5_lag_member",
+        "seq": 5,
+        "text": "Uplink is flapping. Console to the switch. How many LAG members are UP?",
+        "type": "choice",
+        "choices": ["both up", "one up", "none up"],
+        "branches": {
+          "both up": "q6_packet_loss",
+          "one up": "fix_reseat_fiber",
+          "none up": "escalate_backbone_cable"
+        },
+        "help_text": "One LAG member down halves capacity; two down is total loss."
+      },
+      {
+        "id": "q6_packet_loss",
+        "seq": 6,
+        "text": "Both LAG members are UP but link is flapping. Check packet loss on uplink. Is it > 5%?",
+        "type": "yes_no",
+        "branches": {
+          "yes": "fix_reseat_fiber",
+          "no": "escalate_sfp_error"
+        },
+        "help_text": "High packet loss on green link suggests SFP transceiver issues."
+      }
+    ],
+    "fixes": {
+      "fix_reseat_fiber": {
+        "title": "Reseat the fibre strand in RACK-A",
+        "steps": [
+          "Go to RACK-A main comms room",
+          "Locate the fibre uplink pair terminating this switch's LAG",
+          "Check both strands: note which is down (usually LED dark on transceiver)",
+          "Carefully remove the down strand from its SFP transceiver",
+          "Reseat it firmly until it clicks; LED should light within 30 seconds",
+          "Watch console: LAG should negotiate and both members come UP",
+          "Monitor traffic from this pod for 20 minutes to confirm stability",
+          "If only one strand was down, capacity degradation is expected until partner strand is back"
+        ],
+        "confidence": 0.92,
+        "root_cause": "physical_layer"
+      },
+      "fix_add_vlans": {
+        "title": "Add missing VLANs to uplink trunk",
+        "steps": [
+          "Enter switch config for the uplink trunk port",
+          "Add VLAN 10 (STAFF_DATA) and VLAN 20 (VOIP) to allowed list",
+          "Commit and verify: users should regain connectivity within 30 seconds",
+          "Check a few endpoints for DHCP lease"
+        ],
+        "confidence": 0.90,
+        "root_cause": "config_drift"
+      },
+      "escalate_firewall": {
+        "title": "Escalate: Firewall or upstream issue",
+        "steps": [
+          "Switch config is correct, uplink is green, VLANs are allowed, but pod still down",
+          "Firewall may have blocking rule, or upstream circuit is failed",
+          "Check firewall logs for drop rules matching this VLAN/pod",
+          "If firewall rules are clean, escalate to WAN provider"
+        ],
+        "confidence": 0.65,
+        "root_cause": "unknown"
+      },
+      "escalate_no_uplink": {
+        "title": "Escalate: Complete uplink failure",
+        "steps": [
+          "Switch uplink is completely down (red)",
+          "Entire pod is isolated",
+          "Check RACK-A for fibre break, tranceiver failure, or cable disconnection",
+          "If physically OK, escalate to provider for backbone circuit failure"
+        ],
+        "confidence": 0.85,
+        "root_cause": "physical_layer"
+      },
+      "escalate_backbone_cable": {
+        "title": "Escalate: Both LAG members down",
+        "steps": [
+          "Both fibre strands in this LAG are down (none up)",
+          "Backbone cable cut or both transceivers failed",
+          "Entire pod (potentially multiple racks) affected",
+          "Escalate to facilities/provider immediately"
+        ],
+        "confidence": 0.88,
+        "root_cause": "physical_layer"
+      },
+      "escalate_sfp_error": {
+        "title": "Escalate: Transceiver flap",
+        "steps": [
+          "LAG members reporting UP but link keeps dropping",
+          "Likely SFP transceiver firmware issue or dirty optic",
+          "Swap the suspect SFP transceiver with a known-good one",
+          "If problem persists, escalate to hardware support"
+        ],
+        "confidence": 0.60,
+        "root_cause": "hardware_failure"
+      }
+    },
+    "graph_references": [
+      "affected_users → vlan_id (10, 20)",
+      "users → endpoint → switch_port → switch_id",
+      "switch_id → uplink_lag_id → backbone_links",
+      "backbone_link → endpoint_a, endpoint_b (both in RACK-A)"
+    ],
+    "tags": ["topology_aware", "lag", "blast_radius", "high_priority"],
+    "recurrence": 1,
+    "last_seen": "2026-06-15"
+  },
+
+  {
+    "rule_id": "RDR-CONN-003",
+    "name": "Jack label mismatch - physical termination vs. faceplate label",
+    "version": 1,
+    "category": "connectivity",
+    "subcategory": "labelling_error",
+    "description": "Faceplate sticker says one jack ID, but cable actually terminates in a different jack. Extracted from TKT-2026-00103.",
+    "preconditions": {
+      "user_reports_wrong_jack": true,
+      "physical_inspection_required": true
+    },
+    "entry_point": "q1_label_vs_reality",
+    "questions": [
+      {
+        "id": "q1_label_vs_reality",
+        "seq": 1,
+        "text": "User reports jack label mismatch. What does the FACEPLATE sticker say?",
+        "type": "open",
+        "branches": {}
+      },
+      {
+        "id": "q2_trace_cable",
+        "seq": 2,
+        "text": "Physically trace the cable from the faceplate. Where does it ACTUALLY terminate in the patch panel?",
+        "type": "open",
+        "branches": {}
+      },
+      {
+        "id": "q3_sticker_right",
+        "seq": 3,
+        "text": "Does the actual termination match the faceplate label?",
+        "type": "yes_no",
+        "branches": {
+          "yes": "escalate_why_reported",
+          "no": "fix_update_topology"
+        },
+        "help_text": "Mismatch means either the jack was re-punched or the sticker was mislabeled."
+      }
+    ],
+    "fixes": {
+      "fix_update_topology": {
+        "title": "Update topology and relabel faceplate",
+        "steps": [
+          "In Bubba's topology.json, update wall_jack.jack_label to match ACTUAL termination",
+          "Update the faceplate label sticker to match reality",
+          "Re-run topology validation to ensure all cross-references still resolve",
+          "Confirm user can now reference the desk/jack correctly in future tickets",
+          "Document this as a known labelling issue in the office notes (may indicate other mismatches)"
+        ],
+        "confidence": 0.95,
+        "root_cause": "physical_layer"
+      },
+      "escalate_why_reported": {
+        "title": "Escalate: Why did user report mismatch if sticker is correct?",
+        "steps": [
+          "If topology and reality match, user may be confused about which jack they're at",
+          "Confirm with user they're testing the correct desk",
+          "Check actual symptom - is there a connectivity issue, or just labelling confusion?"
+        ],
+        "confidence": 0.50,
+        "root_cause": "user_error"
+      }
+    },
+    "graph_references": [
+      "wall_jack.jack_id vs. wall_jack.jack_label (may diverge)",
+      "wall_jack → patch_panel port → switch_port"
+    ],
+    "tags": ["infrastructure_mapping", "labelling", "topology_audit"],
+    "recurrence": 1,
+    "last_seen": "2026-06-15"
+  },
+
+  {
+    "rule_id": "RDR-CONN-004",
+    "name": "Conference room cable unplugged - user or cleaner disconnect",
+    "version": 1,
+    "category": "connectivity",
+    "subcategory": "no_link",
+    "description": "Shared conference room system offline. Usually caused by cable being unplugged by cleaning crew or during setup. Extracted from TKT-2026-00109.",
+    "preconditions": {
+      "affected_endpoint_type": "conference_room_system",
+      "shared_device": true
+    },
+    "entry_point": "q1_physically_check",
+    "questions": [
+      {
+        "id": "q1_physically_check",
+        "seq": 1,
+        "text": "Go to the conference room. Is the ethernet cable plugged into the system?",
+        "type": "yes_no",
+        "branches": {
+          "yes": "q2_other_cable",
+          "no": "fix_replug_cable"
+        },
+        "help_text": "Conference room cables are frequently pulled by cleaners or during room setup."
+      },
+      {
+        "id": "q2_other_cable",
+        "seq": 2,
+        "text": "Cable is plugged in. Is there a link light on the endpoint NIC?",
+        "type": "yes_no",
+        "branches": {
+          "yes": "escalate_dhcp",
+          "no": "fix_swap_cable"
+        },
+        "help_text": "Link light means physical connection; no light means cable is bad or port is down."
+      }
+    ],
+    "fixes": {
+      "fix_replug_cable": {
+        "title": "Replug the ethernet cable",
+        "steps": [
+          "Locate the ethernet cable at the back of the conference system",
+          "If unplugged, firmly insert it into the RJ45 port until it clicks",
+          "Wait 20 seconds for the system to negotiate DHCP",
+          "Verify: link light comes on, system responds to ping",
+          "Test booking system if applicable"
+        ],
+        "confidence": 0.98,
+        "root_cause": "user_error"
+      },
+      "fix_swap_cable": {
+        "title": "Swap the ethernet cable",
+        "steps": [
+          "The cable is plugged but no link light; cable is likely damaged",
+          "Bring a spare cat6 cable from the supplies closet",
+          "Replace and verify link light and DHCP",
+          "If successful, dispose of damaged cable and order replacement"
+        ],
+        "confidence": 0.90,
+        "root_cause": "physical_layer"
+      },
+      "escalate_dhcp": {
+        "title": "Escalate: Link OK but no DHCP",
+        "steps": [
+          "Link light is on, but system has no IP",
+          "Check DHCP scope for this VLAN (check switch port VLAN assignment)",
+          "If scope is available, power-cycle the endpoint",
+          "If cycle doesn't help, check for IP conflicts in DHCP logs"
+        ],
+        "confidence": 0.60,
+        "root_cause": "config_drift"
+      }
+    },
+    "graph_references": [
+      "endpoint.connection.wall_jack_id",
+      "wall_jack → switch_port → switch.vlan_id",
+      "switch_port.vlan_id (check DHCP scope for this VLAN)"
+    ],
+    "tags": ["conference_room", "shared_device", "quick_fix"],
+    "recurrence": 1,
+    "last_seen": "2026-06-24"
+  },
+
+  {
+    "rule_id": "RDR-VOICE-001",
+    "name": "VoIP phone registration failure - voice VLAN not on trunk",
+    "version": 1,
+    "category": "voice_and_video",
+    "subcategory": "registration_failure",
+    "description": "IP phone fails SIP registration. Switch port has data VLAN only; voice VLAN not tagged. Extracted from TKT-2026-00111.",
+    "preconditions": {
+      "affected_endpoint_type": "voip_phone",
+      "registration_fails": true
+    },
+    "entry_point": "q1_phone_link",
+    "questions": [
+      {
+        "id": "q1_phone_link",
+        "seq": 1,
+        "text": "Does the phone have a link light (physical connection)?",
+        "type": "yes_no",
+        "branches": {
+          "yes": "q2_dhcp_lease",
+          "no": "escalate_cable"
+        }
+      },
+      {
+        "id": "q2_dhcp_lease",
+        "seq": 2,
+        "text": "Does the phone have an IP address on its display?",
+        "type": "yes_no",
+        "branches": {
+          "yes": "q3_sip_server",
+          "no": "escalate_dhcp_data_vlan"
+        },
+        "help_text": "If no DHCP, the phone is on data VLAN only (VLAN 10), no access to management VLAN."
+      },
+      {
+        "id": "q3_sip_server",
+        "seq": 3,
+        "text": "Can you reach the SIP server from the phone's IP? (Verify in phone menu or ping from CLI)",
+        "type": "yes_no",
+        "branches": {
+          "yes": "escalate_sip_config",
+          "no": "fix_add_voice_vlan"
+        },
+        "help_text": "If SIP server is unreachable, phone and server are on different VLANs with no routing."
+      }
+    ],
+    "fixes": {
+      "fix_add_voice_vlan": {
+        "title": "Add voice VLAN (20) to the switch port",
+        "steps": [
+          "Locate the switch port this phone is patched into (check topology)",
+          "SSH to the switch and enter config for that port",
+          "Change the port to 'access' mode with VLAN 20 (VOIP)",
+          "Or if trunk: add VLAN 20 to the allowed VLAN list",
+          "Save and commit",
+          "Wait 30 seconds; phone should re-register",
+          "Verify: phone displays registered status, can make test call"
+        ],
+        "confidence": 0.94,
+        "root_cause": "config_drift"
+      },
+      "escalate_sip_config": {
+        "title": "Escalate: SIP server config issue",
+        "steps": [
+          "Phone can reach SIP server but refuses to register",
+          "Check phone SIP config (correct server FQDN/IP, port 5060)",
+          "Check PBX/SIP server logs for auth failures",
+          "If config matches, escalate to VoIP provider"
+        ],
+        "confidence": 0.65,
+        "root_cause": "config_drift"
+      },
+      "escalate_cable": {
+        "title": "Escalate: No link light",
+        "steps": [
+          "Phone has no link light; physical connection is broken",
+          "Swap cable at desk; if no link, the jack or switch port is faulty"
+        ],
+        "confidence": 0.85,
+        "root_cause": "physical_layer"
+      },
+      "escalate_dhcp_data_vlan": {
+        "title": "Escalate: DHCP on data VLAN only",
+        "steps": [
+          "Phone got DHCP but only on VLAN 10 (data), not VLAN 20 (voice)",
+          "Check switch port config: should be access VLAN 20 or trunk with both VLANs",
+          "Or check DHCP scope for VLAN 20: is there an available range?"
+        ],
+        "confidence": 0.80,
+        "root_cause": "config_drift"
+      }
+    },
+    "graph_references": [
+      "endpoint (voip_phone) → connection.wall_jack_id",
+      "wall_jack → switch_port_id",
+      "switch_port.mode (access vs trunk), vlan_id, allowed_vlans (should include 20)"
+    ],
+    "tags": ["voice_vlan", "registration", "config_drift"],
+    "recurrence": 2,
+    "last_seen": "2026-06-22"
+  },
+
+  {
+    "rule_id": "RDR-ACCESS-001",
+    "name": "AD group mismatch after promotion - recurring pattern",
+    "version": 1,
+    "category": "access_and_accounts",
+    "subcategory": "permissions",
+    "description": "User promoted to new role but AD group membership not updated. Access to role-based resources fails. Extracted from TKT-2026-00123. This is the 4th occurrence.",
+    "preconditions": {
+      "symptom_keywords": ["promoted", "access denied", "permission denied"],
+      "vlan_ids": [10]
+    },
+    "entry_point": "q1_promoted",
+    "questions": [
+      {
+        "id": "q1_promoted",
+        "seq": 1,
+        "text": "Was the user recently promoted or assigned a new role?",
+        "type": "yes_no",
+        "branches": {
+          "yes": "q2_ad_groups",
+          "no": "escalate_not_promotion"
+        }
+      },
+      {
+        "id": "q2_ad_groups",
+        "seq": 2,
+        "text": "What AD groups is the user currently in? (Query AD or ask user to run 'whoami /groups')",
+        "type": "open",
+        "branches": {}
+      },
+      {
+        "id": "q3_new_role_group",
+        "seq": 3,
+        "text": "What is the AD group for the new role? (e.g. Team_Leaders, QA_Analysts)",
+        "type": "open",
+        "branches": {}
+      },
+      {
+        "id": "q4_in_new_group",
+        "seq": 4,
+        "text": "Is the user in the NEW role group?",
+        "type": "yes_no",
+        "branches": {
+          "yes": "fix_remove_old_group",
+          "no": "fix_add_new_group"
+        }
+      }
+    ],
+    "fixes": {
+      "fix_add_new_group": {
+        "title": "Add user to new role's AD group",
+        "steps": [
+          "Open Active Directory Users and Computers",
+          "Find the new role's group (e.g. Team_Leaders, QA_Analysts)",
+          "Add the user to this group",
+          "Proceed to fix_remove_old_group to clean up"
+        ],
+        "confidence": 0.96,
+        "root_cause": "config_drift",
+        "preventive": "This is the 4th occurrence in 6 months. Escalate to HR: implement automated AD provisioning on promotion events in HRIS."
+      },
+      "fix_remove_old_group": {
+        "title": "Remove user from old role's AD group",
+        "steps": [
+          "Find the OLD role group (e.g. Customer_Service_Advisors)",
+          "Remove the user from this group (check HR policy: some require async removal after 30 days)",
+          "Force gpupdate /force on user's device",
+          "Verify: user can now access new-role resources"
+        ],
+        "confidence": 0.92,
+        "root_cause": "config_drift"
+      },
+      "escalate_not_promotion": {
+        "title": "Escalate: Access issue not related to promotion",
+        "steps": [
+          "User reports access denied but not recently promoted",
+          "Check: is the user in the required AD group?",
+          "If yes, escalate to resource owner (shared drive, application)",
+          "If no, investigate why user was removed from group"
+        ],
+        "confidence": 0.50,
+        "root_cause": "unknown"
+      }
+    },
+    "graph_references": [
+      "user_id → department",
+      "department (Team Leadership) → role group (Team_Leaders, QA_Analysts, etc.)"
+    ],
+    "tags": ["access_control", "recurring", "process_issue", "escalation_required"],
+    "recurrence": 4,
+    "last_seen": "2026-07-20",
+    "notes": "Pattern indicates HR → IT provisioning gap. Recommend automated AD updates on HRIS role changes."
+  },
+
+  {
+    "rule_id": "RDR-CABLE-001",
+    "name": "Cable unseated at desk - cleaning crew or user unplugging",
+    "version": 1,
+    "category": "connectivity",
+    "subcategory": "no_link",
+    "description": "Both PC and phone offline at a desk. Usually the ethernet cable was unplugged by user or cleaning crew. Extracted from TKT-2026-00118. Recurring with T109.",
+    "preconditions": {
+      "affected_endpoints_count": 2,
+      "both_data_and_voice": true,
+      "same_desk": true
+    },
+    "entry_point": "q1_cable_status",
+    "questions": [
+      {
+        "id": "q1_cable_status",
+        "seq": 1,
+        "text": "Go to the desk. Is the ethernet cable plugged into the wall jack?",
+        "type": "yes_no",
+        "branches": {
+          "yes": "q2_link_light",
+          "no": "fix_replug_cable"
+        },
+        "help_text": "Cleaning crew often unplugs cables under desks accidentally."
+      },
+      {
+        "id": "q2_link_light",
+        "seq": 2,
+        "text": "Cable is plugged in. Is there a link light on the PC NIC?",
+        "type": "yes_no",
+        "branches": {
+          "yes": "q3_phone_ip",
+          "no": "fix_swap_cable"
+        }
+      },
+      {
+        "id": "q3_phone_ip",
+        "seq": 3,
+        "text": "PC has link. Does the phone display an IP address?",
+        "type": "yes_no",
+        "branches": {
+          "yes": "escalate_vlan_routing",
+          "no": "fix_power_cycle_phone"
+        }
+      }
+    ],
+    "fixes": {
+      "fix_replug_cable": {
+        "title": "Replug the ethernet cable",
+        "steps": [
+          "Unplug the cable completely from the wall jack",
+          "Reseat it firmly until it clicks",
+          "Wait 20 seconds for devices to negotiate DHCP",
+          "Verify: both PC and phone have connectivity (ping, test CRM access)",
+          "Confirm with user; close ticket"
+        ],
+        "confidence": 0.98,
+        "root_cause": "user_error"
+      },
+      "fix_swap_cable": {
+        "title": "Swap the ethernet cable",
+        "steps": [
+          "Cable is plugged but no link light; cable is likely damaged",
+          "Get a spare cat6 cable",
+          "Replace and verify link light comes on within 10 seconds",
+          "Dispose of damaged cable"
+        ],
+        "confidence": 0.90,
+        "root_cause": "physical_layer"
+      },
+      "fix_power_cycle_phone": {
+        "title": "Power-cycle the VoIP phone",
+        "steps": [
+          "PC has link but phone shows no IP",
+          "Unplug phone power for 10 seconds",
+          "Plug back in and wait for registration",
+          "Phone should display IP and registered status within 30 seconds"
+        ],
+        "confidence": 0.85,
+        "root_cause": "hardware_failure"
+      },
+      "escalate_vlan_routing": {
+        "title": "Escalate: VLAN isolation issue",
+        "steps": [
+          "Both PC and phone have IPs/link but no actual connectivity",
+          "Suggests VLAN routing issue or firewall blocking",
+          "Check switch port is carrying both VLANs 10 and 20"
+        ],
+        "confidence": 0.60,
+        "root_cause": "config_drift"
+      }
+    },
+    "graph_references": [
+      "desk_location → endpoint (PC)",
+      "desk_location → endpoint (phone)",
+      "both → connection.wall_jack_id"
+    ],
+    "tags": ["physical_layer", "recurring", "quick_fix", "user_error"],
+    "recurrence": 2,
+    "last_seen": "2026-06-27",
+    "notes": "Same root cause as T109. Consider placing 'Do Not Unplug' labels on conference room and desk cables."
+  },
+
+  {
+    "rule_id": "RDR-EDGE-001",
+    "name": "Open ticket - partial diagnosis, awaiting external data",
+    "version": 1,
+    "category": "voice_and_video",
+    "subcategory": "cti_sync",
+    "description": "CTI (computer telephony integration) sync issue, sporadic, requires partner logs to diagnose. Extracted from TKT-2026-00125. Demonstrates escalation when data is unavailable.",
+    "preconditions": {
+      "status": "in_progress",
+      "awaiting_external_data": true
+    },
+    "entry_point": "q1_hypothesis",
+    "questions": [
+      {
+        "id": "q1_hypothesis",
+        "seq": 1,
+        "text": "What is your current hypothesis for the cause?",
+        "type": "open",
+        "branches": {}
+      },
+      {
+        "id": "q2_data_collected",
+        "seq": 2,
+        "text": "What data have you collected so far?",
+        "type": "open",
+        "branches": {}
+      },
+      {
+        "id": "q3_next_steps",
+        "seq": 3,
+        "text": "What external data or partner access do you need to proceed?",
+        "type": "open",
+        "branches": {}
+      }
+    ],
+    "fixes": {
+      "document_hypothesis": {
+        "title": "Document and await",
+        "steps": [
+          "Record the current hypothesis clearly in the ticket",
+          "List all data collected and results",
+          "Specify exactly what external data is needed (e.g. Harbourline CRM logs between time X and Y)",
+          "Create a follow-up reminder for 2 business days",
+          "Escalate to partner contact if data hasn't arrived"
+        ],
+        "confidence": 0.50,
+        "root_cause": "unknown"
+      }
+    },
+    "graph_references": [],
+    "tags": ["escalation", "open_ticket", "awaiting_data", "third_party"],
+    "status": "in_progress"
+  }
+]

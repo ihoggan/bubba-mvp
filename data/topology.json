@@ -1,0 +1,6687 @@
+{
+  "company": {
+    "name": "Meridian Contact Solutions",
+    "industry": "Business Process Outsourcing (Customer Service)",
+    "headcount": 50
+  },
+  "sites": [
+    {
+      "site_id": "SITE-HQ",
+      "name": "Meridian Sheffield",
+      "address": "1 Riverside Way, Sheffield, S1 2XX",
+      "floors": [
+        {
+          "floor_id": "FLOOR-GF",
+          "label": "Ground",
+          "departments": [
+            "Administration",
+            "HR",
+            "Operations",
+            "Facilities"
+          ]
+        },
+        {
+          "floor_id": "FLOOR-1F",
+          "label": "First",
+          "departments": [
+            "Call Centre Operations",
+            "Team Leadership",
+            "Workforce Management",
+            "Quality & Training",
+            "IT Support"
+          ]
+        }
+      ]
+    }
+  ],
+  "racks": [
+    {
+      "rack_id": "RACK-A",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-GF",
+      "location_description": "Main comms room, ground floor east side",
+      "rack_units": 42
+    },
+    {
+      "rack_id": "RACK-B",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "North comms cupboard, first floor",
+      "rack_units": 42
+    },
+    {
+      "rack_id": "RACK-C",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-GF",
+      "location_description": "Secondary comms cupboard, ground floor near meeting rooms",
+      "rack_units": 42
+    },
+    {
+      "rack_id": "RACK-D",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "South comms cupboard, first floor",
+      "rack_units": 42
+    }
+  ],
+  "network_devices": [
+    {
+      "device_id": "FW-01",
+      "hostname": "mtc-fw-01",
+      "device_type": "firewall",
+      "vendor": "Cisco",
+      "model": "Firepower 1010",
+      "rack_id": "RACK-A",
+      "rack_position_u": 2,
+      "mgmt_ip": "10.10.99.10",
+      "ports": [
+        {
+          "port_id": "FW-01-Gi1/1",
+          "port_label": "GigabitEthernet1/1",
+          "speed": "1G",
+          "mode": "access",
+          "description": "WAN uplink to ISP"
+        },
+        {
+          "port_id": "FW-01-Gi1/2",
+          "port_label": "GigabitEthernet1/2",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "LAN handoff to SW-A-DIST",
+          "allowed_vlans": [
+            10,
+            20,
+            30,
+            40,
+            99
+          ]
+        }
+      ]
+    },
+    {
+      "device_id": "SW-A-DIST",
+      "hostname": "mtc-sw-a-dist",
+      "device_type": "distribution_switch",
+      "vendor": "Cisco",
+      "model": "Catalyst 9300-24T",
+      "rack_id": "RACK-A",
+      "rack_position_u": 3,
+      "mgmt_ip": "10.10.99.11",
+      "ports": [
+        {
+          "port_id": "SW-A-DIST-Gi0/1",
+          "port_label": "GigabitEthernet0/1",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "In-rack trunk RACK-A distribution to access",
+          "allowed_vlans": [
+            10,
+            20,
+            30,
+            40,
+            99
+          ]
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/2",
+          "port_label": "GigabitEthernet0/2",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/3",
+          "port_label": "GigabitEthernet0/3",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/4",
+          "port_label": "GigabitEthernet0/4",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/5",
+          "port_label": "GigabitEthernet0/5",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/6",
+          "port_label": "GigabitEthernet0/6",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/7",
+          "port_label": "GigabitEthernet0/7",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/8",
+          "port_label": "GigabitEthernet0/8",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/9",
+          "port_label": "GigabitEthernet0/9",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/10",
+          "port_label": "GigabitEthernet0/10",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/11",
+          "port_label": "GigabitEthernet0/11",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/12",
+          "port_label": "GigabitEthernet0/12",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/13",
+          "port_label": "GigabitEthernet0/13",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/14",
+          "port_label": "GigabitEthernet0/14",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/15",
+          "port_label": "GigabitEthernet0/15",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/16",
+          "port_label": "GigabitEthernet0/16",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/17",
+          "port_label": "GigabitEthernet0/17",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/18",
+          "port_label": "GigabitEthernet0/18",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/19",
+          "port_label": "GigabitEthernet0/19",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "Backbone to RACK-B (LAG-DIST-B strand 1)",
+          "allowed_vlans": [
+            10,
+            20,
+            30,
+            40,
+            99
+          ]
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/20",
+          "port_label": "GigabitEthernet0/20",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "Backbone to RACK-B (LAG-DIST-B strand 2)",
+          "allowed_vlans": [
+            10,
+            20,
+            30,
+            40,
+            99
+          ]
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/21",
+          "port_label": "GigabitEthernet0/21",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "Backbone to RACK-C (LAG-DIST-C strand 1)",
+          "allowed_vlans": [
+            10,
+            20,
+            30,
+            40,
+            99
+          ]
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/22",
+          "port_label": "GigabitEthernet0/22",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "Backbone to RACK-C (LAG-DIST-C strand 2)",
+          "allowed_vlans": [
+            10,
+            20,
+            30,
+            40,
+            99
+          ]
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/23",
+          "port_label": "GigabitEthernet0/23",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "Backbone to RACK-D (LAG-DIST-D strand 1)",
+          "allowed_vlans": [
+            10,
+            20,
+            30,
+            40,
+            99
+          ]
+        },
+        {
+          "port_id": "SW-A-DIST-Gi0/24",
+          "port_label": "GigabitEthernet0/24",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "Backbone to RACK-D (LAG-DIST-D strand 2)",
+          "allowed_vlans": [
+            10,
+            20,
+            30,
+            40,
+            99
+          ]
+        }
+      ]
+    },
+    {
+      "device_id": "SW-A-01",
+      "hostname": "mtc-sw-a-01",
+      "device_type": "access_switch",
+      "vendor": "Cisco",
+      "model": "Catalyst 9200-48P",
+      "rack_id": "RACK-A",
+      "rack_position_u": 4,
+      "mgmt_ip": "10.10.99.12",
+      "ports": [
+        {
+          "port_id": "SW-A-01-Gi0/1",
+          "port_label": "GigabitEthernet0/1",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-GF-001 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-A-01-Gi0/2",
+          "port_label": "GigabitEthernet0/2",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-GF-002 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-A-01-Gi0/3",
+          "port_label": "GigabitEthernet0/3",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-GF-003 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-A-01-Gi0/4",
+          "port_label": "GigabitEthernet0/4",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-GF-004 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-A-01-Gi0/5",
+          "port_label": "GigabitEthernet0/5",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-GF-005 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-A-01-Gi0/6",
+          "port_label": "GigabitEthernet0/6",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "AP uplink via WJ-GF-006",
+          "allowed_vlans": [
+            30,
+            40,
+            99
+          ]
+        },
+        {
+          "port_id": "SW-A-01-Gi0/7",
+          "port_label": "GigabitEthernet0/7",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-GF-007",
+          "vlan_id": 10
+        },
+        {
+          "port_id": "SW-A-01-Gi0/8",
+          "port_label": "GigabitEthernet0/8",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/9",
+          "port_label": "GigabitEthernet0/9",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/10",
+          "port_label": "GigabitEthernet0/10",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/11",
+          "port_label": "GigabitEthernet0/11",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/12",
+          "port_label": "GigabitEthernet0/12",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/13",
+          "port_label": "GigabitEthernet0/13",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/14",
+          "port_label": "GigabitEthernet0/14",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/15",
+          "port_label": "GigabitEthernet0/15",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/16",
+          "port_label": "GigabitEthernet0/16",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/17",
+          "port_label": "GigabitEthernet0/17",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/18",
+          "port_label": "GigabitEthernet0/18",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/19",
+          "port_label": "GigabitEthernet0/19",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/20",
+          "port_label": "GigabitEthernet0/20",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/21",
+          "port_label": "GigabitEthernet0/21",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/22",
+          "port_label": "GigabitEthernet0/22",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/23",
+          "port_label": "GigabitEthernet0/23",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/24",
+          "port_label": "GigabitEthernet0/24",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/25",
+          "port_label": "GigabitEthernet0/25",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/26",
+          "port_label": "GigabitEthernet0/26",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/27",
+          "port_label": "GigabitEthernet0/27",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/28",
+          "port_label": "GigabitEthernet0/28",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/29",
+          "port_label": "GigabitEthernet0/29",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/30",
+          "port_label": "GigabitEthernet0/30",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/31",
+          "port_label": "GigabitEthernet0/31",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/32",
+          "port_label": "GigabitEthernet0/32",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/33",
+          "port_label": "GigabitEthernet0/33",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/34",
+          "port_label": "GigabitEthernet0/34",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/35",
+          "port_label": "GigabitEthernet0/35",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/36",
+          "port_label": "GigabitEthernet0/36",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/37",
+          "port_label": "GigabitEthernet0/37",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/38",
+          "port_label": "GigabitEthernet0/38",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/39",
+          "port_label": "GigabitEthernet0/39",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/40",
+          "port_label": "GigabitEthernet0/40",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/41",
+          "port_label": "GigabitEthernet0/41",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/42",
+          "port_label": "GigabitEthernet0/42",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/43",
+          "port_label": "GigabitEthernet0/43",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/44",
+          "port_label": "GigabitEthernet0/44",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/45",
+          "port_label": "GigabitEthernet0/45",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/46",
+          "port_label": "GigabitEthernet0/46",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/47",
+          "port_label": "GigabitEthernet0/47",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-A-01-Gi0/48",
+          "port_label": "GigabitEthernet0/48",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "In-rack trunk RACK-A distribution to access",
+          "allowed_vlans": [
+            10,
+            20,
+            30,
+            40,
+            99
+          ]
+        }
+      ]
+    },
+    {
+      "device_id": "SW-B-01",
+      "hostname": "mtc-sw-b-01",
+      "device_type": "access_switch",
+      "vendor": "Cisco",
+      "model": "Catalyst 9200-48P",
+      "rack_id": "RACK-B",
+      "rack_position_u": 4,
+      "mgmt_ip": "10.10.99.13",
+      "ports": [
+        {
+          "port_id": "SW-B-01-Gi0/1",
+          "port_label": "GigabitEthernet0/1",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-001 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-01-Gi0/2",
+          "port_label": "GigabitEthernet0/2",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-002 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-01-Gi0/3",
+          "port_label": "GigabitEthernet0/3",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-003 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-01-Gi0/4",
+          "port_label": "GigabitEthernet0/4",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-004 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-01-Gi0/5",
+          "port_label": "GigabitEthernet0/5",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-005 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-01-Gi0/6",
+          "port_label": "GigabitEthernet0/6",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-006 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-01-Gi0/7",
+          "port_label": "GigabitEthernet0/7",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-007 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-01-Gi0/8",
+          "port_label": "GigabitEthernet0/8",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-008 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-01-Gi0/9",
+          "port_label": "GigabitEthernet0/9",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-009 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-01-Gi0/10",
+          "port_label": "GigabitEthernet0/10",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-010 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-01-Gi0/11",
+          "port_label": "GigabitEthernet0/11",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-011 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-01-Gi0/12",
+          "port_label": "GigabitEthernet0/12",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-012 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-01-Gi0/13",
+          "port_label": "GigabitEthernet0/13",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-013 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-01-Gi0/14",
+          "port_label": "GigabitEthernet0/14",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-014 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-01-Gi0/15",
+          "port_label": "GigabitEthernet0/15",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-015 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-01-Gi0/16",
+          "port_label": "GigabitEthernet0/16",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-016 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-01-Gi0/17",
+          "port_label": "GigabitEthernet0/17",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-017 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-01-Gi0/18",
+          "port_label": "GigabitEthernet0/18",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-018 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-01-Gi0/19",
+          "port_label": "GigabitEthernet0/19",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "AP uplink via WJ-1F-019",
+          "allowed_vlans": [
+            30,
+            40,
+            99
+          ]
+        },
+        {
+          "port_id": "SW-B-01-Gi0/20",
+          "port_label": "GigabitEthernet0/20",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-020",
+          "vlan_id": 10
+        },
+        {
+          "port_id": "SW-B-01-Gi0/21",
+          "port_label": "GigabitEthernet0/21",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/22",
+          "port_label": "GigabitEthernet0/22",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/23",
+          "port_label": "GigabitEthernet0/23",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/24",
+          "port_label": "GigabitEthernet0/24",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/25",
+          "port_label": "GigabitEthernet0/25",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/26",
+          "port_label": "GigabitEthernet0/26",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/27",
+          "port_label": "GigabitEthernet0/27",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/28",
+          "port_label": "GigabitEthernet0/28",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/29",
+          "port_label": "GigabitEthernet0/29",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/30",
+          "port_label": "GigabitEthernet0/30",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/31",
+          "port_label": "GigabitEthernet0/31",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/32",
+          "port_label": "GigabitEthernet0/32",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/33",
+          "port_label": "GigabitEthernet0/33",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/34",
+          "port_label": "GigabitEthernet0/34",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/35",
+          "port_label": "GigabitEthernet0/35",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/36",
+          "port_label": "GigabitEthernet0/36",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/37",
+          "port_label": "GigabitEthernet0/37",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/38",
+          "port_label": "GigabitEthernet0/38",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/39",
+          "port_label": "GigabitEthernet0/39",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/40",
+          "port_label": "GigabitEthernet0/40",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/41",
+          "port_label": "GigabitEthernet0/41",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/42",
+          "port_label": "GigabitEthernet0/42",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/43",
+          "port_label": "GigabitEthernet0/43",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/44",
+          "port_label": "GigabitEthernet0/44",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/45",
+          "port_label": "GigabitEthernet0/45",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/46",
+          "port_label": "GigabitEthernet0/46",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-01-Gi0/47",
+          "port_label": "GigabitEthernet0/47",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "Backbone to RACK-A dist (LAG-DIST-B strand 1)",
+          "allowed_vlans": [
+            10,
+            20,
+            30,
+            40,
+            99
+          ]
+        },
+        {
+          "port_id": "SW-B-01-Gi0/48",
+          "port_label": "GigabitEthernet0/48",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "Backbone to RACK-A dist (LAG-DIST-B strand 2)",
+          "allowed_vlans": [
+            10,
+            20,
+            30,
+            40,
+            99
+          ]
+        }
+      ]
+    },
+    {
+      "device_id": "SW-B-02",
+      "hostname": "mtc-sw-b-02",
+      "device_type": "access_switch",
+      "vendor": "Cisco",
+      "model": "Catalyst 9200-48P",
+      "rack_id": "RACK-B",
+      "rack_position_u": 4,
+      "mgmt_ip": "10.10.99.14",
+      "ports": [
+        {
+          "port_id": "SW-B-02-Gi0/1",
+          "port_label": "GigabitEthernet0/1",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-021 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-02-Gi0/2",
+          "port_label": "GigabitEthernet0/2",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-022 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-02-Gi0/3",
+          "port_label": "GigabitEthernet0/3",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-023 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-02-Gi0/4",
+          "port_label": "GigabitEthernet0/4",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-024 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-02-Gi0/5",
+          "port_label": "GigabitEthernet0/5",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-025 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-02-Gi0/6",
+          "port_label": "GigabitEthernet0/6",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-026 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-02-Gi0/7",
+          "port_label": "GigabitEthernet0/7",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-027 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-02-Gi0/8",
+          "port_label": "GigabitEthernet0/8",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-028 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-B-02-Gi0/9",
+          "port_label": "GigabitEthernet0/9",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-029",
+          "vlan_id": 10
+        },
+        {
+          "port_id": "SW-B-02-Gi0/10",
+          "port_label": "GigabitEthernet0/10",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/11",
+          "port_label": "GigabitEthernet0/11",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/12",
+          "port_label": "GigabitEthernet0/12",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/13",
+          "port_label": "GigabitEthernet0/13",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/14",
+          "port_label": "GigabitEthernet0/14",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/15",
+          "port_label": "GigabitEthernet0/15",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/16",
+          "port_label": "GigabitEthernet0/16",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/17",
+          "port_label": "GigabitEthernet0/17",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/18",
+          "port_label": "GigabitEthernet0/18",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/19",
+          "port_label": "GigabitEthernet0/19",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/20",
+          "port_label": "GigabitEthernet0/20",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/21",
+          "port_label": "GigabitEthernet0/21",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/22",
+          "port_label": "GigabitEthernet0/22",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/23",
+          "port_label": "GigabitEthernet0/23",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/24",
+          "port_label": "GigabitEthernet0/24",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/25",
+          "port_label": "GigabitEthernet0/25",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/26",
+          "port_label": "GigabitEthernet0/26",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/27",
+          "port_label": "GigabitEthernet0/27",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/28",
+          "port_label": "GigabitEthernet0/28",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/29",
+          "port_label": "GigabitEthernet0/29",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/30",
+          "port_label": "GigabitEthernet0/30",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/31",
+          "port_label": "GigabitEthernet0/31",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/32",
+          "port_label": "GigabitEthernet0/32",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/33",
+          "port_label": "GigabitEthernet0/33",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/34",
+          "port_label": "GigabitEthernet0/34",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/35",
+          "port_label": "GigabitEthernet0/35",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/36",
+          "port_label": "GigabitEthernet0/36",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/37",
+          "port_label": "GigabitEthernet0/37",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/38",
+          "port_label": "GigabitEthernet0/38",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/39",
+          "port_label": "GigabitEthernet0/39",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/40",
+          "port_label": "GigabitEthernet0/40",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/41",
+          "port_label": "GigabitEthernet0/41",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/42",
+          "port_label": "GigabitEthernet0/42",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/43",
+          "port_label": "GigabitEthernet0/43",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/44",
+          "port_label": "GigabitEthernet0/44",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/45",
+          "port_label": "GigabitEthernet0/45",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/46",
+          "port_label": "GigabitEthernet0/46",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/47",
+          "port_label": "GigabitEthernet0/47",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-B-02-Gi0/48",
+          "port_label": "GigabitEthernet0/48",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "device_id": "SW-C-01",
+      "hostname": "mtc-sw-c-01",
+      "device_type": "access_switch",
+      "vendor": "Cisco",
+      "model": "Catalyst 9200-48P",
+      "rack_id": "RACK-C",
+      "rack_position_u": 4,
+      "mgmt_ip": "10.10.99.15",
+      "ports": [
+        {
+          "port_id": "SW-C-01-Gi0/1",
+          "port_label": "GigabitEthernet0/1",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-GF-101",
+          "vlan_id": 10
+        },
+        {
+          "port_id": "SW-C-01-Gi0/2",
+          "port_label": "GigabitEthernet0/2",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-GF-102",
+          "vlan_id": 10
+        },
+        {
+          "port_id": "SW-C-01-Gi0/3",
+          "port_label": "GigabitEthernet0/3",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "AP uplink via WJ-GF-103",
+          "allowed_vlans": [
+            30,
+            40,
+            99
+          ]
+        },
+        {
+          "port_id": "SW-C-01-Gi0/4",
+          "port_label": "GigabitEthernet0/4",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/5",
+          "port_label": "GigabitEthernet0/5",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/6",
+          "port_label": "GigabitEthernet0/6",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/7",
+          "port_label": "GigabitEthernet0/7",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/8",
+          "port_label": "GigabitEthernet0/8",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/9",
+          "port_label": "GigabitEthernet0/9",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/10",
+          "port_label": "GigabitEthernet0/10",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/11",
+          "port_label": "GigabitEthernet0/11",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/12",
+          "port_label": "GigabitEthernet0/12",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/13",
+          "port_label": "GigabitEthernet0/13",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/14",
+          "port_label": "GigabitEthernet0/14",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/15",
+          "port_label": "GigabitEthernet0/15",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/16",
+          "port_label": "GigabitEthernet0/16",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/17",
+          "port_label": "GigabitEthernet0/17",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/18",
+          "port_label": "GigabitEthernet0/18",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/19",
+          "port_label": "GigabitEthernet0/19",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/20",
+          "port_label": "GigabitEthernet0/20",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/21",
+          "port_label": "GigabitEthernet0/21",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/22",
+          "port_label": "GigabitEthernet0/22",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/23",
+          "port_label": "GigabitEthernet0/23",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/24",
+          "port_label": "GigabitEthernet0/24",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/25",
+          "port_label": "GigabitEthernet0/25",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/26",
+          "port_label": "GigabitEthernet0/26",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/27",
+          "port_label": "GigabitEthernet0/27",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/28",
+          "port_label": "GigabitEthernet0/28",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/29",
+          "port_label": "GigabitEthernet0/29",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/30",
+          "port_label": "GigabitEthernet0/30",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/31",
+          "port_label": "GigabitEthernet0/31",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/32",
+          "port_label": "GigabitEthernet0/32",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/33",
+          "port_label": "GigabitEthernet0/33",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/34",
+          "port_label": "GigabitEthernet0/34",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/35",
+          "port_label": "GigabitEthernet0/35",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/36",
+          "port_label": "GigabitEthernet0/36",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/37",
+          "port_label": "GigabitEthernet0/37",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/38",
+          "port_label": "GigabitEthernet0/38",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/39",
+          "port_label": "GigabitEthernet0/39",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/40",
+          "port_label": "GigabitEthernet0/40",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/41",
+          "port_label": "GigabitEthernet0/41",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/42",
+          "port_label": "GigabitEthernet0/42",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/43",
+          "port_label": "GigabitEthernet0/43",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/44",
+          "port_label": "GigabitEthernet0/44",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/45",
+          "port_label": "GigabitEthernet0/45",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/46",
+          "port_label": "GigabitEthernet0/46",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-C-01-Gi0/47",
+          "port_label": "GigabitEthernet0/47",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "Backbone to RACK-A dist (LAG-DIST-C strand 1)",
+          "allowed_vlans": [
+            10,
+            20,
+            30,
+            40,
+            99
+          ]
+        },
+        {
+          "port_id": "SW-C-01-Gi0/48",
+          "port_label": "GigabitEthernet0/48",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "Backbone to RACK-A dist (LAG-DIST-C strand 2)",
+          "allowed_vlans": [
+            10,
+            20,
+            30,
+            40,
+            99
+          ]
+        }
+      ]
+    },
+    {
+      "device_id": "SW-D-01",
+      "hostname": "mtc-sw-d-01",
+      "device_type": "access_switch",
+      "vendor": "Cisco",
+      "model": "Catalyst 9200-48P",
+      "rack_id": "RACK-D",
+      "rack_position_u": 4,
+      "mgmt_ip": "10.10.99.16",
+      "ports": [
+        {
+          "port_id": "SW-D-01-Gi0/1",
+          "port_label": "GigabitEthernet0/1",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-030 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-D-01-Gi0/2",
+          "port_label": "GigabitEthernet0/2",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-031 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-D-01-Gi0/3",
+          "port_label": "GigabitEthernet0/3",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-032 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-D-01-Gi0/4",
+          "port_label": "GigabitEthernet0/4",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-033 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-D-01-Gi0/5",
+          "port_label": "GigabitEthernet0/5",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-034 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-D-01-Gi0/6",
+          "port_label": "GigabitEthernet0/6",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-035 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-D-01-Gi0/7",
+          "port_label": "GigabitEthernet0/7",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-036 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-D-01-Gi0/8",
+          "port_label": "GigabitEthernet0/8",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-037 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-D-01-Gi0/9",
+          "port_label": "GigabitEthernet0/9",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-038 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-D-01-Gi0/10",
+          "port_label": "GigabitEthernet0/10",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-039 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-D-01-Gi0/11",
+          "port_label": "GigabitEthernet0/11",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-040 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-D-01-Gi0/12",
+          "port_label": "GigabitEthernet0/12",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-041 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-D-01-Gi0/13",
+          "port_label": "GigabitEthernet0/13",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-042 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-D-01-Gi0/14",
+          "port_label": "GigabitEthernet0/14",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-043 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-D-01-Gi0/15",
+          "port_label": "GigabitEthernet0/15",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-044 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-D-01-Gi0/16",
+          "port_label": "GigabitEthernet0/16",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-045 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-D-01-Gi0/17",
+          "port_label": "GigabitEthernet0/17",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-046 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-D-01-Gi0/18",
+          "port_label": "GigabitEthernet0/18",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-047 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-D-01-Gi0/19",
+          "port_label": "GigabitEthernet0/19",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-048 — data VLAN 10, voice VLAN 20",
+          "vlan_id": 10,
+          "allowed_vlans": [
+            20
+          ]
+        },
+        {
+          "port_id": "SW-D-01-Gi0/20",
+          "port_label": "GigabitEthernet0/20",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "AP uplink via WJ-1F-049",
+          "allowed_vlans": [
+            30,
+            40,
+            99
+          ]
+        },
+        {
+          "port_id": "SW-D-01-Gi0/21",
+          "port_label": "GigabitEthernet0/21",
+          "speed": "1G",
+          "mode": "access",
+          "description": "Access to WJ-1F-050",
+          "vlan_id": 10
+        },
+        {
+          "port_id": "SW-D-01-Gi0/22",
+          "port_label": "GigabitEthernet0/22",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/23",
+          "port_label": "GigabitEthernet0/23",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/24",
+          "port_label": "GigabitEthernet0/24",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/25",
+          "port_label": "GigabitEthernet0/25",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/26",
+          "port_label": "GigabitEthernet0/26",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/27",
+          "port_label": "GigabitEthernet0/27",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/28",
+          "port_label": "GigabitEthernet0/28",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/29",
+          "port_label": "GigabitEthernet0/29",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/30",
+          "port_label": "GigabitEthernet0/30",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/31",
+          "port_label": "GigabitEthernet0/31",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/32",
+          "port_label": "GigabitEthernet0/32",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/33",
+          "port_label": "GigabitEthernet0/33",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/34",
+          "port_label": "GigabitEthernet0/34",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/35",
+          "port_label": "GigabitEthernet0/35",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/36",
+          "port_label": "GigabitEthernet0/36",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/37",
+          "port_label": "GigabitEthernet0/37",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/38",
+          "port_label": "GigabitEthernet0/38",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/39",
+          "port_label": "GigabitEthernet0/39",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/40",
+          "port_label": "GigabitEthernet0/40",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/41",
+          "port_label": "GigabitEthernet0/41",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/42",
+          "port_label": "GigabitEthernet0/42",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/43",
+          "port_label": "GigabitEthernet0/43",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/44",
+          "port_label": "GigabitEthernet0/44",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/45",
+          "port_label": "GigabitEthernet0/45",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/46",
+          "port_label": "GigabitEthernet0/46",
+          "speed": "1G",
+          "mode": "disabled",
+          "description": ""
+        },
+        {
+          "port_id": "SW-D-01-Gi0/47",
+          "port_label": "GigabitEthernet0/47",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "Backbone to RACK-A dist (LAG-DIST-D strand 1)",
+          "allowed_vlans": [
+            10,
+            20,
+            30,
+            40,
+            99
+          ]
+        },
+        {
+          "port_id": "SW-D-01-Gi0/48",
+          "port_label": "GigabitEthernet0/48",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "Backbone to RACK-A dist (LAG-DIST-D strand 2)",
+          "allowed_vlans": [
+            10,
+            20,
+            30,
+            40,
+            99
+          ]
+        }
+      ]
+    },
+    {
+      "device_id": "WLC-01",
+      "hostname": "mtc-wlc-01",
+      "device_type": "wireless_controller",
+      "vendor": "Cisco",
+      "model": "9800-CL",
+      "rack_id": "RACK-A",
+      "rack_position_u": 6,
+      "mgmt_ip": "10.10.99.21",
+      "ports": [
+        {
+          "port_id": "WLC-01-Gi0/1",
+          "port_label": "GigabitEthernet0/1",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "Trunk to SW-A-DIST for WiFi VLANs and management",
+          "allowed_vlans": [
+            30,
+            40,
+            99
+          ]
+        }
+      ]
+    },
+    {
+      "device_id": "AP-01",
+      "hostname": "mtc-ap-01",
+      "device_type": "access_point",
+      "vendor": "Cisco",
+      "model": "Catalyst 9130AXI",
+      "rack_id": "RACK-A",
+      "rack_position_u": 0,
+      "mgmt_ip": "10.10.99.31",
+      "ports": [
+        {
+          "port_id": "AP-01-Gi0/0",
+          "port_label": "GigabitEthernet0/0",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "Uplink to access switch (PoE, WiFi VLANs + mgmt)",
+          "allowed_vlans": [
+            30,
+            40,
+            99
+          ]
+        }
+      ]
+    },
+    {
+      "device_id": "AP-02",
+      "hostname": "mtc-ap-02",
+      "device_type": "access_point",
+      "vendor": "Cisco",
+      "model": "Catalyst 9130AXI",
+      "rack_id": "RACK-C",
+      "rack_position_u": 0,
+      "mgmt_ip": "10.10.99.32",
+      "ports": [
+        {
+          "port_id": "AP-02-Gi0/0",
+          "port_label": "GigabitEthernet0/0",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "Uplink to access switch (PoE, WiFi VLANs + mgmt)",
+          "allowed_vlans": [
+            30,
+            40,
+            99
+          ]
+        }
+      ]
+    },
+    {
+      "device_id": "AP-03",
+      "hostname": "mtc-ap-03",
+      "device_type": "access_point",
+      "vendor": "Cisco",
+      "model": "Catalyst 9130AXI",
+      "rack_id": "RACK-B",
+      "rack_position_u": 0,
+      "mgmt_ip": "10.10.99.33",
+      "ports": [
+        {
+          "port_id": "AP-03-Gi0/0",
+          "port_label": "GigabitEthernet0/0",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "Uplink to access switch (PoE, WiFi VLANs + mgmt)",
+          "allowed_vlans": [
+            30,
+            40,
+            99
+          ]
+        }
+      ]
+    },
+    {
+      "device_id": "AP-04",
+      "hostname": "mtc-ap-04",
+      "device_type": "access_point",
+      "vendor": "Cisco",
+      "model": "Catalyst 9130AXI",
+      "rack_id": "RACK-D",
+      "rack_position_u": 0,
+      "mgmt_ip": "10.10.99.34",
+      "ports": [
+        {
+          "port_id": "AP-04-Gi0/0",
+          "port_label": "GigabitEthernet0/0",
+          "speed": "1G",
+          "mode": "trunk",
+          "description": "Uplink to access switch (PoE, WiFi VLANs + mgmt)",
+          "allowed_vlans": [
+            30,
+            40,
+            99
+          ]
+        }
+      ]
+    }
+  ],
+  "patch_panels": [
+    {
+      "panel_id": "PP-A-01",
+      "rack_id": "RACK-A",
+      "rack_position_u": 5,
+      "port_count": 48,
+      "ports": [
+        {
+          "port_number": 1,
+          "wall_jack_id": "WJ-GF-001",
+          "switch_port_id": "SW-A-01-Gi0/1",
+          "cable_label": "PP-A-01-P01"
+        },
+        {
+          "port_number": 2,
+          "wall_jack_id": "WJ-GF-002",
+          "switch_port_id": "SW-A-01-Gi0/2",
+          "cable_label": "PP-A-01-P02"
+        },
+        {
+          "port_number": 3,
+          "wall_jack_id": "WJ-GF-003",
+          "switch_port_id": "SW-A-01-Gi0/3",
+          "cable_label": "PP-A-01-P03"
+        },
+        {
+          "port_number": 4,
+          "wall_jack_id": "WJ-GF-004",
+          "switch_port_id": "SW-A-01-Gi0/4",
+          "cable_label": "PP-A-01-P04"
+        },
+        {
+          "port_number": 5,
+          "wall_jack_id": "WJ-GF-005",
+          "switch_port_id": "SW-A-01-Gi0/5",
+          "cable_label": "PP-A-01-P05"
+        },
+        {
+          "port_number": 6,
+          "wall_jack_id": "WJ-GF-006",
+          "switch_port_id": "SW-A-01-Gi0/6",
+          "cable_label": "PP-A-01-P06"
+        },
+        {
+          "port_number": 7,
+          "wall_jack_id": "WJ-GF-007",
+          "switch_port_id": "SW-A-01-Gi0/7",
+          "cable_label": "PP-A-01-P07"
+        },
+        {
+          "port_number": 8,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 9,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 10,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 11,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 12,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 13,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 14,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 15,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 16,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 17,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 18,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 19,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 20,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 21,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 22,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 23,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 24,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 25,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 26,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 27,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 28,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 29,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 30,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 31,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 32,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 33,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 34,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 35,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 36,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 37,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 38,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 39,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 40,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 41,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 42,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 43,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 44,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 45,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 46,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 47,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 48,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        }
+      ]
+    },
+    {
+      "panel_id": "PP-B-01",
+      "rack_id": "RACK-B",
+      "rack_position_u": 4,
+      "port_count": 48,
+      "ports": [
+        {
+          "port_number": 1,
+          "wall_jack_id": "WJ-1F-001",
+          "switch_port_id": "SW-B-01-Gi0/1",
+          "cable_label": "PP-B-01-P01"
+        },
+        {
+          "port_number": 2,
+          "wall_jack_id": "WJ-1F-002",
+          "switch_port_id": "SW-B-01-Gi0/2",
+          "cable_label": "PP-B-01-P02"
+        },
+        {
+          "port_number": 3,
+          "wall_jack_id": "WJ-1F-003",
+          "switch_port_id": "SW-B-01-Gi0/3",
+          "cable_label": "PP-B-01-P03"
+        },
+        {
+          "port_number": 4,
+          "wall_jack_id": "WJ-1F-004",
+          "switch_port_id": "SW-B-01-Gi0/4",
+          "cable_label": "PP-B-01-P04"
+        },
+        {
+          "port_number": 5,
+          "wall_jack_id": "WJ-1F-005",
+          "switch_port_id": "SW-B-01-Gi0/5",
+          "cable_label": "PP-B-01-P05"
+        },
+        {
+          "port_number": 6,
+          "wall_jack_id": "WJ-1F-006",
+          "switch_port_id": "SW-B-01-Gi0/6",
+          "cable_label": "PP-B-01-P06"
+        },
+        {
+          "port_number": 7,
+          "wall_jack_id": "WJ-1F-007",
+          "switch_port_id": "SW-B-01-Gi0/7",
+          "cable_label": "PP-B-01-P07"
+        },
+        {
+          "port_number": 8,
+          "wall_jack_id": "WJ-1F-008",
+          "switch_port_id": "SW-B-01-Gi0/8",
+          "cable_label": "PP-B-01-P08"
+        },
+        {
+          "port_number": 9,
+          "wall_jack_id": "WJ-1F-009",
+          "switch_port_id": "SW-B-01-Gi0/9",
+          "cable_label": "PP-B-01-P09"
+        },
+        {
+          "port_number": 10,
+          "wall_jack_id": "WJ-1F-010",
+          "switch_port_id": "SW-B-01-Gi0/10",
+          "cable_label": "PP-B-01-P10"
+        },
+        {
+          "port_number": 11,
+          "wall_jack_id": "WJ-1F-011",
+          "switch_port_id": "SW-B-01-Gi0/11",
+          "cable_label": "PP-B-01-P11"
+        },
+        {
+          "port_number": 12,
+          "wall_jack_id": "WJ-1F-012",
+          "switch_port_id": "SW-B-01-Gi0/12",
+          "cable_label": "PP-B-01-P12"
+        },
+        {
+          "port_number": 13,
+          "wall_jack_id": "WJ-1F-013",
+          "switch_port_id": "SW-B-01-Gi0/13",
+          "cable_label": "PP-B-01-P13"
+        },
+        {
+          "port_number": 14,
+          "wall_jack_id": "WJ-1F-014",
+          "switch_port_id": "SW-B-01-Gi0/14",
+          "cable_label": "PP-B-01-P14"
+        },
+        {
+          "port_number": 15,
+          "wall_jack_id": "WJ-1F-015",
+          "switch_port_id": "SW-B-01-Gi0/15",
+          "cable_label": "PP-B-01-P15"
+        },
+        {
+          "port_number": 16,
+          "wall_jack_id": "WJ-1F-016",
+          "switch_port_id": "SW-B-01-Gi0/16",
+          "cable_label": "PP-B-01-P16"
+        },
+        {
+          "port_number": 17,
+          "wall_jack_id": "WJ-1F-017",
+          "switch_port_id": "SW-B-01-Gi0/17",
+          "cable_label": "PP-B-01-P17"
+        },
+        {
+          "port_number": 18,
+          "wall_jack_id": "WJ-1F-018",
+          "switch_port_id": "SW-B-01-Gi0/18",
+          "cable_label": "PP-B-01-P18"
+        },
+        {
+          "port_number": 19,
+          "wall_jack_id": "WJ-1F-019",
+          "switch_port_id": "SW-B-01-Gi0/19",
+          "cable_label": "PP-B-01-P19"
+        },
+        {
+          "port_number": 20,
+          "wall_jack_id": "WJ-1F-020",
+          "switch_port_id": "SW-B-01-Gi0/20",
+          "cable_label": "PP-B-01-P20"
+        },
+        {
+          "port_number": 21,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 22,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 23,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 24,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 25,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 26,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 27,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 28,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 29,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 30,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 31,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 32,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 33,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 34,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 35,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 36,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 37,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 38,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 39,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 40,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 41,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 42,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 43,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 44,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 45,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 46,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 47,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 48,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        }
+      ]
+    },
+    {
+      "panel_id": "PP-B-02",
+      "rack_id": "RACK-B",
+      "rack_position_u": 5,
+      "port_count": 48,
+      "ports": [
+        {
+          "port_number": 1,
+          "wall_jack_id": "WJ-1F-021",
+          "switch_port_id": "SW-B-02-Gi0/1",
+          "cable_label": "PP-B-02-P01"
+        },
+        {
+          "port_number": 2,
+          "wall_jack_id": "WJ-1F-022",
+          "switch_port_id": "SW-B-02-Gi0/2",
+          "cable_label": "PP-B-02-P02"
+        },
+        {
+          "port_number": 3,
+          "wall_jack_id": "WJ-1F-023",
+          "switch_port_id": "SW-B-02-Gi0/3",
+          "cable_label": "PP-B-02-P03"
+        },
+        {
+          "port_number": 4,
+          "wall_jack_id": "WJ-1F-024",
+          "switch_port_id": "SW-B-02-Gi0/4",
+          "cable_label": "PP-B-02-P04"
+        },
+        {
+          "port_number": 5,
+          "wall_jack_id": "WJ-1F-025",
+          "switch_port_id": "SW-B-02-Gi0/5",
+          "cable_label": "PP-B-02-P05"
+        },
+        {
+          "port_number": 6,
+          "wall_jack_id": "WJ-1F-026",
+          "switch_port_id": "SW-B-02-Gi0/6",
+          "cable_label": "PP-B-02-P06"
+        },
+        {
+          "port_number": 7,
+          "wall_jack_id": "WJ-1F-027",
+          "switch_port_id": "SW-B-02-Gi0/7",
+          "cable_label": "PP-B-02-P07"
+        },
+        {
+          "port_number": 8,
+          "wall_jack_id": "WJ-1F-028",
+          "switch_port_id": "SW-B-02-Gi0/8",
+          "cable_label": "PP-B-02-P08"
+        },
+        {
+          "port_number": 9,
+          "wall_jack_id": "WJ-1F-029",
+          "switch_port_id": "SW-B-02-Gi0/9",
+          "cable_label": "PP-B-02-P09"
+        },
+        {
+          "port_number": 10,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 11,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 12,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 13,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 14,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 15,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 16,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 17,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 18,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 19,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 20,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 21,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 22,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 23,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 24,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 25,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 26,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 27,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 28,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 29,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 30,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 31,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 32,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 33,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 34,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 35,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 36,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 37,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 38,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 39,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 40,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 41,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 42,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 43,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 44,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 45,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 46,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 47,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 48,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        }
+      ]
+    },
+    {
+      "panel_id": "PP-C-01",
+      "rack_id": "RACK-C",
+      "rack_position_u": 3,
+      "port_count": 48,
+      "ports": [
+        {
+          "port_number": 1,
+          "wall_jack_id": "WJ-GF-101",
+          "switch_port_id": "SW-C-01-Gi0/1",
+          "cable_label": "PP-C-01-P01"
+        },
+        {
+          "port_number": 2,
+          "wall_jack_id": "WJ-GF-102",
+          "switch_port_id": "SW-C-01-Gi0/2",
+          "cable_label": "PP-C-01-P02"
+        },
+        {
+          "port_number": 3,
+          "wall_jack_id": "WJ-GF-103",
+          "switch_port_id": "SW-C-01-Gi0/3",
+          "cable_label": "PP-C-01-P03"
+        },
+        {
+          "port_number": 4,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 5,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 6,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 7,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 8,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 9,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 10,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 11,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 12,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 13,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 14,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 15,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 16,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 17,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 18,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 19,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 20,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 21,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 22,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 23,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 24,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 25,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 26,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 27,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 28,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 29,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 30,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 31,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 32,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 33,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 34,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 35,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 36,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 37,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 38,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 39,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 40,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 41,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 42,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 43,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 44,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 45,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 46,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 47,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 48,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        }
+      ]
+    },
+    {
+      "panel_id": "PP-D-01",
+      "rack_id": "RACK-D",
+      "rack_position_u": 3,
+      "port_count": 48,
+      "ports": [
+        {
+          "port_number": 1,
+          "wall_jack_id": "WJ-1F-030",
+          "switch_port_id": "SW-D-01-Gi0/1",
+          "cable_label": "PP-D-01-P01"
+        },
+        {
+          "port_number": 2,
+          "wall_jack_id": "WJ-1F-031",
+          "switch_port_id": "SW-D-01-Gi0/2",
+          "cable_label": "PP-D-01-P02"
+        },
+        {
+          "port_number": 3,
+          "wall_jack_id": "WJ-1F-032",
+          "switch_port_id": "SW-D-01-Gi0/3",
+          "cable_label": "PP-D-01-P03"
+        },
+        {
+          "port_number": 4,
+          "wall_jack_id": "WJ-1F-033",
+          "switch_port_id": "SW-D-01-Gi0/4",
+          "cable_label": "PP-D-01-P04"
+        },
+        {
+          "port_number": 5,
+          "wall_jack_id": "WJ-1F-034",
+          "switch_port_id": "SW-D-01-Gi0/5",
+          "cable_label": "PP-D-01-P05"
+        },
+        {
+          "port_number": 6,
+          "wall_jack_id": "WJ-1F-035",
+          "switch_port_id": "SW-D-01-Gi0/6",
+          "cable_label": "PP-D-01-P06"
+        },
+        {
+          "port_number": 7,
+          "wall_jack_id": "WJ-1F-036",
+          "switch_port_id": "SW-D-01-Gi0/7",
+          "cable_label": "PP-D-01-P07"
+        },
+        {
+          "port_number": 8,
+          "wall_jack_id": "WJ-1F-037",
+          "switch_port_id": "SW-D-01-Gi0/8",
+          "cable_label": "PP-D-01-P08"
+        },
+        {
+          "port_number": 9,
+          "wall_jack_id": "WJ-1F-038",
+          "switch_port_id": "SW-D-01-Gi0/9",
+          "cable_label": "PP-D-01-P09"
+        },
+        {
+          "port_number": 10,
+          "wall_jack_id": "WJ-1F-039",
+          "switch_port_id": "SW-D-01-Gi0/10",
+          "cable_label": "PP-D-01-P10"
+        },
+        {
+          "port_number": 11,
+          "wall_jack_id": "WJ-1F-040",
+          "switch_port_id": "SW-D-01-Gi0/11",
+          "cable_label": "PP-D-01-P11"
+        },
+        {
+          "port_number": 12,
+          "wall_jack_id": "WJ-1F-041",
+          "switch_port_id": "SW-D-01-Gi0/12",
+          "cable_label": "PP-D-01-P12"
+        },
+        {
+          "port_number": 13,
+          "wall_jack_id": "WJ-1F-042",
+          "switch_port_id": "SW-D-01-Gi0/13",
+          "cable_label": "PP-D-01-P13"
+        },
+        {
+          "port_number": 14,
+          "wall_jack_id": "WJ-1F-043",
+          "switch_port_id": "SW-D-01-Gi0/14",
+          "cable_label": "PP-D-01-P14"
+        },
+        {
+          "port_number": 15,
+          "wall_jack_id": "WJ-1F-044",
+          "switch_port_id": "SW-D-01-Gi0/15",
+          "cable_label": "PP-D-01-P15"
+        },
+        {
+          "port_number": 16,
+          "wall_jack_id": "WJ-1F-045",
+          "switch_port_id": "SW-D-01-Gi0/16",
+          "cable_label": "PP-D-01-P16"
+        },
+        {
+          "port_number": 17,
+          "wall_jack_id": "WJ-1F-046",
+          "switch_port_id": "SW-D-01-Gi0/17",
+          "cable_label": "PP-D-01-P17"
+        },
+        {
+          "port_number": 18,
+          "wall_jack_id": "WJ-1F-047",
+          "switch_port_id": "SW-D-01-Gi0/18",
+          "cable_label": "PP-D-01-P18"
+        },
+        {
+          "port_number": 19,
+          "wall_jack_id": "WJ-1F-048",
+          "switch_port_id": "SW-D-01-Gi0/19",
+          "cable_label": "PP-D-01-P19"
+        },
+        {
+          "port_number": 20,
+          "wall_jack_id": "WJ-1F-049",
+          "switch_port_id": "SW-D-01-Gi0/20",
+          "cable_label": "PP-D-01-P20"
+        },
+        {
+          "port_number": 21,
+          "wall_jack_id": "WJ-1F-050",
+          "switch_port_id": "SW-D-01-Gi0/21",
+          "cable_label": "PP-D-01-P21"
+        },
+        {
+          "port_number": 22,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 23,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 24,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 25,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 26,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 27,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 28,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 29,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 30,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 31,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 32,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 33,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 34,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 35,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 36,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 37,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 38,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 39,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 40,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 41,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 42,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 43,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 44,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 45,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 46,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 47,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        },
+        {
+          "port_number": 48,
+          "wall_jack_id": null,
+          "switch_port_id": null,
+          "cable_label": null
+        }
+      ]
+    }
+  ],
+  "wall_jacks": [
+    {
+      "jack_id": "WJ-GF-001",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-GF",
+      "location_description": "Reception desk, ground floor entrance"
+    },
+    {
+      "jack_id": "WJ-GF-002",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-GF",
+      "location_description": "HR office, ground floor west"
+    },
+    {
+      "jack_id": "WJ-GF-003",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-GF",
+      "location_description": "Operations office, desk 1"
+    },
+    {
+      "jack_id": "WJ-GF-004",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-GF",
+      "location_description": "Operations office, desk 2"
+    },
+    {
+      "jack_id": "WJ-GF-005",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-GF",
+      "location_description": "Facilities desk, near reception"
+    },
+    {
+      "jack_id": "WJ-GF-006",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-GF",
+      "location_description": "Ceiling near reception, AP-01 uplink"
+    },
+    {
+      "jack_id": "WJ-GF-007",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-GF",
+      "location_description": "Management printer, near ops office"
+    },
+    {
+      "jack_id": "WJ-GF-101",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-GF",
+      "location_description": "Meeting Room 1 conference system"
+    },
+    {
+      "jack_id": "WJ-GF-102",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-GF",
+      "location_description": "Meeting Room 2 conference system"
+    },
+    {
+      "jack_id": "WJ-GF-103",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-GF",
+      "location_description": "Ceiling near meeting rooms, AP-02 uplink"
+    },
+    {
+      "jack_id": "WJ-1F-001",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 1, desk 1"
+    },
+    {
+      "jack_id": "WJ-1F-002",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 1, desk 2"
+    },
+    {
+      "jack_id": "WJ-1F-003",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 1, desk 3"
+    },
+    {
+      "jack_id": "WJ-1F-004",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 1, desk 4"
+    },
+    {
+      "jack_id": "WJ-1F-005",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 1, desk 5"
+    },
+    {
+      "jack_id": "WJ-1F-006",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 1, desk 6"
+    },
+    {
+      "jack_id": "WJ-1F-007",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 1, desk 7"
+    },
+    {
+      "jack_id": "WJ-1F-008",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 1, desk 8"
+    },
+    {
+      "jack_id": "WJ-1F-009",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 2, desk 1"
+    },
+    {
+      "jack_id": "WJ-1F-010",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 2, desk 2"
+    },
+    {
+      "jack_id": "WJ-1F-011",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 2, desk 3"
+    },
+    {
+      "jack_id": "WJ-1F-012",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 2, desk 4"
+    },
+    {
+      "jack_id": "WJ-1F-013",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 2, desk 5"
+    },
+    {
+      "jack_id": "WJ-1F-014",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 2, desk 6"
+    },
+    {
+      "jack_id": "WJ-1F-015",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 2, desk 7"
+    },
+    {
+      "jack_id": "WJ-1F-016",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 2, desk 8"
+    },
+    {
+      "jack_id": "WJ-1F-017",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "IT Support desk 1"
+    },
+    {
+      "jack_id": "WJ-1F-018",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "IT Support desk 2"
+    },
+    {
+      "jack_id": "WJ-1F-019",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Ceiling above IT desks, AP-03 uplink"
+    },
+    {
+      "jack_id": "WJ-1F-020",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "First floor printer, north end"
+    },
+    {
+      "jack_id": "WJ-1F-021",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 3, desk 1"
+    },
+    {
+      "jack_id": "WJ-1F-022",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 3, desk 2"
+    },
+    {
+      "jack_id": "WJ-1F-023",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 3, desk 3"
+    },
+    {
+      "jack_id": "WJ-1F-024",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 3, desk 4"
+    },
+    {
+      "jack_id": "WJ-1F-025",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 3, desk 5"
+    },
+    {
+      "jack_id": "WJ-1F-026",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 3, desk 6"
+    },
+    {
+      "jack_id": "WJ-1F-027",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 3, desk 7"
+    },
+    {
+      "jack_id": "WJ-1F-028",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 3, desk 8"
+    },
+    {
+      "jack_id": "WJ-1F-029",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "First floor small meeting room conference system"
+    },
+    {
+      "jack_id": "WJ-1F-030",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 4, desk 1"
+    },
+    {
+      "jack_id": "WJ-1F-031",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 4, desk 2"
+    },
+    {
+      "jack_id": "WJ-1F-032",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 4, desk 3"
+    },
+    {
+      "jack_id": "WJ-1F-033",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 4, desk 4"
+    },
+    {
+      "jack_id": "WJ-1F-034",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 4, desk 5"
+    },
+    {
+      "jack_id": "WJ-1F-035",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 4, desk 6"
+    },
+    {
+      "jack_id": "WJ-1F-036",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 4, desk 7"
+    },
+    {
+      "jack_id": "WJ-1F-037",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 4, desk 8"
+    },
+    {
+      "jack_id": "WJ-1F-038",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 5, desk 1"
+    },
+    {
+      "jack_id": "WJ-1F-039",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 5, desk 2"
+    },
+    {
+      "jack_id": "WJ-1F-040",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 5, desk 3"
+    },
+    {
+      "jack_id": "WJ-1F-041",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 5, desk 4"
+    },
+    {
+      "jack_id": "WJ-1F-042",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 5, desk 5"
+    },
+    {
+      "jack_id": "WJ-1F-043",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 5, desk 6"
+    },
+    {
+      "jack_id": "WJ-1F-044",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 5, desk 7"
+    },
+    {
+      "jack_id": "WJ-1F-045",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Pod 5, desk 8"
+    },
+    {
+      "jack_id": "WJ-1F-046",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Workforce Management desk"
+    },
+    {
+      "jack_id": "WJ-1F-047",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Quality Assurance desk"
+    },
+    {
+      "jack_id": "WJ-1F-048",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Training Coordinator desk"
+    },
+    {
+      "jack_id": "WJ-1F-049",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "Ceiling above pod 5, AP-04 uplink"
+    },
+    {
+      "jack_id": "WJ-1F-050",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "location_description": "First floor printer, south end"
+    }
+  ],
+  "endpoints": [
+    {
+      "endpoint_id": "EP-LT-0001",
+      "hostname": "mtc-lt-0001",
+      "device_type": "laptop",
+      "vendor": "Dell",
+      "model": "Latitude 5450",
+      "mac_address": "00:00:00:02:00:01",
+      "ip_address": "10.10.10.50",
+      "assigned_user_id": "USR-0001",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-017",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0001",
+      "hostname": "mtc-ph-0001",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:02",
+      "ip_address": "10.10.20.50",
+      "assigned_user_id": "USR-0001",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-017",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-LT-0002",
+      "hostname": "mtc-lt-0002",
+      "device_type": "laptop",
+      "vendor": "Dell",
+      "model": "Latitude 5450",
+      "mac_address": "00:00:00:02:00:03",
+      "ip_address": "10.10.10.51",
+      "assigned_user_id": "USR-0002",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-018",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0002",
+      "hostname": "mtc-ph-0002",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:04",
+      "ip_address": "10.10.20.51",
+      "assigned_user_id": "USR-0002",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-018",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0003",
+      "hostname": "mtc-dt-0003",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:05",
+      "ip_address": "10.10.10.52",
+      "assigned_user_id": "USR-0003",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-002",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0003",
+      "hostname": "mtc-ph-0003",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:06",
+      "ip_address": "10.10.20.52",
+      "assigned_user_id": "USR-0003",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-002",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0004",
+      "hostname": "mtc-dt-0004",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:07",
+      "ip_address": "10.10.10.53",
+      "assigned_user_id": "USR-0004",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-010",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0004",
+      "hostname": "mtc-ph-0004",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:08",
+      "ip_address": "10.10.20.53",
+      "assigned_user_id": "USR-0004",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-010",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0005",
+      "hostname": "mtc-dt-0005",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:09",
+      "ip_address": "10.10.10.54",
+      "assigned_user_id": "USR-0005",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-022",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0005",
+      "hostname": "mtc-ph-0005",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:0a",
+      "ip_address": "10.10.20.54",
+      "assigned_user_id": "USR-0005",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-022",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0006",
+      "hostname": "mtc-dt-0006",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:0b",
+      "ip_address": "10.10.10.55",
+      "assigned_user_id": "USR-0006",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-031",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0006",
+      "hostname": "mtc-ph-0006",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:0c",
+      "ip_address": "10.10.20.55",
+      "assigned_user_id": "USR-0006",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-031",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0007",
+      "hostname": "mtc-dt-0007",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:0d",
+      "ip_address": "10.10.10.56",
+      "assigned_user_id": "USR-0007",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-039",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0007",
+      "hostname": "mtc-ph-0007",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:0e",
+      "ip_address": "10.10.20.56",
+      "assigned_user_id": "USR-0007",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-039",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0008",
+      "hostname": "mtc-dt-0008",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:0f",
+      "ip_address": "10.10.10.57",
+      "assigned_user_id": "USR-0008",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-003",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0008",
+      "hostname": "mtc-ph-0008",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:10",
+      "ip_address": "10.10.20.57",
+      "assigned_user_id": "USR-0008",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-003",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0009",
+      "hostname": "mtc-dt-0009",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:11",
+      "ip_address": "10.10.10.58",
+      "assigned_user_id": "USR-0009",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-011",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0009",
+      "hostname": "mtc-ph-0009",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:12",
+      "ip_address": "10.10.20.58",
+      "assigned_user_id": "USR-0009",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-011",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0010",
+      "hostname": "mtc-dt-0010",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:13",
+      "ip_address": "10.10.10.59",
+      "assigned_user_id": "USR-0010",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-023",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0010",
+      "hostname": "mtc-ph-0010",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:14",
+      "ip_address": "10.10.20.59",
+      "assigned_user_id": "USR-0010",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-023",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0011",
+      "hostname": "mtc-dt-0011",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:15",
+      "ip_address": "10.10.10.60",
+      "assigned_user_id": "USR-0011",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-032",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0011",
+      "hostname": "mtc-ph-0011",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:16",
+      "ip_address": "10.10.20.60",
+      "assigned_user_id": "USR-0011",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-032",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0012",
+      "hostname": "mtc-dt-0012",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:17",
+      "ip_address": "10.10.10.61",
+      "assigned_user_id": "USR-0012",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-040",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0012",
+      "hostname": "mtc-ph-0012",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:18",
+      "ip_address": "10.10.20.61",
+      "assigned_user_id": "USR-0012",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-040",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0013",
+      "hostname": "mtc-dt-0013",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:19",
+      "ip_address": "10.10.10.62",
+      "assigned_user_id": "USR-0013",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-004",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0013",
+      "hostname": "mtc-ph-0013",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:1a",
+      "ip_address": "10.10.20.62",
+      "assigned_user_id": "USR-0013",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-004",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0014",
+      "hostname": "mtc-dt-0014",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:1b",
+      "ip_address": "10.10.10.63",
+      "assigned_user_id": "USR-0014",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-012",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0014",
+      "hostname": "mtc-ph-0014",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:1c",
+      "ip_address": "10.10.20.63",
+      "assigned_user_id": "USR-0014",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-012",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0015",
+      "hostname": "mtc-dt-0015",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:1d",
+      "ip_address": "10.10.10.64",
+      "assigned_user_id": "USR-0015",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-024",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0015",
+      "hostname": "mtc-ph-0015",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:1e",
+      "ip_address": "10.10.20.64",
+      "assigned_user_id": "USR-0015",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-024",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0016",
+      "hostname": "mtc-dt-0016",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:1f",
+      "ip_address": "10.10.10.65",
+      "assigned_user_id": "USR-0016",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-033",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0016",
+      "hostname": "mtc-ph-0016",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:20",
+      "ip_address": "10.10.20.65",
+      "assigned_user_id": "USR-0016",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-033",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0017",
+      "hostname": "mtc-dt-0017",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:21",
+      "ip_address": "10.10.10.66",
+      "assigned_user_id": "USR-0017",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-041",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0017",
+      "hostname": "mtc-ph-0017",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:22",
+      "ip_address": "10.10.20.66",
+      "assigned_user_id": "USR-0017",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-041",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0018",
+      "hostname": "mtc-dt-0018",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:23",
+      "ip_address": "10.10.10.67",
+      "assigned_user_id": "USR-0018",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-005",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0018",
+      "hostname": "mtc-ph-0018",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:24",
+      "ip_address": "10.10.20.67",
+      "assigned_user_id": "USR-0018",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-005",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0019",
+      "hostname": "mtc-dt-0019",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:25",
+      "ip_address": "10.10.10.68",
+      "assigned_user_id": "USR-0019",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-013",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0019",
+      "hostname": "mtc-ph-0019",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:26",
+      "ip_address": "10.10.20.68",
+      "assigned_user_id": "USR-0019",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-013",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0020",
+      "hostname": "mtc-dt-0020",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:27",
+      "ip_address": "10.10.10.69",
+      "assigned_user_id": "USR-0020",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-025",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0020",
+      "hostname": "mtc-ph-0020",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:28",
+      "ip_address": "10.10.20.69",
+      "assigned_user_id": "USR-0020",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-025",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0021",
+      "hostname": "mtc-dt-0021",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:29",
+      "ip_address": "10.10.10.70",
+      "assigned_user_id": "USR-0021",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-034",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0021",
+      "hostname": "mtc-ph-0021",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:2a",
+      "ip_address": "10.10.20.70",
+      "assigned_user_id": "USR-0021",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-034",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0022",
+      "hostname": "mtc-dt-0022",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:2b",
+      "ip_address": "10.10.10.71",
+      "assigned_user_id": "USR-0022",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-042",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0022",
+      "hostname": "mtc-ph-0022",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:2c",
+      "ip_address": "10.10.20.71",
+      "assigned_user_id": "USR-0022",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-042",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0023",
+      "hostname": "mtc-dt-0023",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:2d",
+      "ip_address": "10.10.10.72",
+      "assigned_user_id": "USR-0023",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-006",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0023",
+      "hostname": "mtc-ph-0023",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:2e",
+      "ip_address": "10.10.20.72",
+      "assigned_user_id": "USR-0023",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-006",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0024",
+      "hostname": "mtc-dt-0024",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:2f",
+      "ip_address": "10.10.10.73",
+      "assigned_user_id": "USR-0024",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-014",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0024",
+      "hostname": "mtc-ph-0024",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:30",
+      "ip_address": "10.10.20.73",
+      "assigned_user_id": "USR-0024",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-014",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0025",
+      "hostname": "mtc-dt-0025",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:31",
+      "ip_address": "10.10.10.74",
+      "assigned_user_id": "USR-0025",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-026",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0025",
+      "hostname": "mtc-ph-0025",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:32",
+      "ip_address": "10.10.20.74",
+      "assigned_user_id": "USR-0025",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-026",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0026",
+      "hostname": "mtc-dt-0026",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:33",
+      "ip_address": "10.10.10.75",
+      "assigned_user_id": "USR-0026",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-035",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0026",
+      "hostname": "mtc-ph-0026",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:34",
+      "ip_address": "10.10.20.75",
+      "assigned_user_id": "USR-0026",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-035",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0027",
+      "hostname": "mtc-dt-0027",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:35",
+      "ip_address": "10.10.10.76",
+      "assigned_user_id": "USR-0027",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-043",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0027",
+      "hostname": "mtc-ph-0027",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:36",
+      "ip_address": "10.10.20.76",
+      "assigned_user_id": "USR-0027",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-043",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0028",
+      "hostname": "mtc-dt-0028",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:37",
+      "ip_address": "10.10.10.77",
+      "assigned_user_id": "USR-0028",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-007",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0028",
+      "hostname": "mtc-ph-0028",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:38",
+      "ip_address": "10.10.20.77",
+      "assigned_user_id": "USR-0028",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-007",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0029",
+      "hostname": "mtc-dt-0029",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:39",
+      "ip_address": "10.10.10.78",
+      "assigned_user_id": "USR-0029",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-015",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0029",
+      "hostname": "mtc-ph-0029",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:3a",
+      "ip_address": "10.10.20.78",
+      "assigned_user_id": "USR-0029",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-015",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0030",
+      "hostname": "mtc-dt-0030",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:3b",
+      "ip_address": "10.10.10.79",
+      "assigned_user_id": "USR-0030",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-027",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0030",
+      "hostname": "mtc-ph-0030",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:3c",
+      "ip_address": "10.10.20.79",
+      "assigned_user_id": "USR-0030",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-027",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0031",
+      "hostname": "mtc-dt-0031",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:3d",
+      "ip_address": "10.10.10.80",
+      "assigned_user_id": "USR-0031",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-036",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0031",
+      "hostname": "mtc-ph-0031",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:3e",
+      "ip_address": "10.10.20.80",
+      "assigned_user_id": "USR-0031",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-036",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0032",
+      "hostname": "mtc-dt-0032",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:3f",
+      "ip_address": "10.10.10.81",
+      "assigned_user_id": "USR-0032",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-044",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0032",
+      "hostname": "mtc-ph-0032",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:40",
+      "ip_address": "10.10.20.81",
+      "assigned_user_id": "USR-0032",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-044",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0033",
+      "hostname": "mtc-dt-0033",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:41",
+      "ip_address": "10.10.10.82",
+      "assigned_user_id": "USR-0033",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-008",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0033",
+      "hostname": "mtc-ph-0033",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:42",
+      "ip_address": "10.10.20.82",
+      "assigned_user_id": "USR-0033",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-008",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0034",
+      "hostname": "mtc-dt-0034",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:43",
+      "ip_address": "10.10.10.83",
+      "assigned_user_id": "USR-0034",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-016",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0034",
+      "hostname": "mtc-ph-0034",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:44",
+      "ip_address": "10.10.20.83",
+      "assigned_user_id": "USR-0034",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-016",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0035",
+      "hostname": "mtc-dt-0035",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:45",
+      "ip_address": "10.10.10.84",
+      "assigned_user_id": "USR-0035",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-028",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0035",
+      "hostname": "mtc-ph-0035",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:46",
+      "ip_address": "10.10.20.84",
+      "assigned_user_id": "USR-0035",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-028",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0036",
+      "hostname": "mtc-dt-0036",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:47",
+      "ip_address": "10.10.10.85",
+      "assigned_user_id": "USR-0036",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-037",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0036",
+      "hostname": "mtc-ph-0036",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:48",
+      "ip_address": "10.10.20.85",
+      "assigned_user_id": "USR-0036",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-037",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0037",
+      "hostname": "mtc-dt-0037",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:49",
+      "ip_address": "10.10.10.86",
+      "assigned_user_id": "USR-0037",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-045",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0037",
+      "hostname": "mtc-ph-0037",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:4a",
+      "ip_address": "10.10.20.86",
+      "assigned_user_id": "USR-0037",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-045",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0038",
+      "hostname": "mtc-dt-0038",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:4b",
+      "ip_address": "10.10.10.87",
+      "assigned_user_id": "USR-0038",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-001",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0038",
+      "hostname": "mtc-ph-0038",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:4c",
+      "ip_address": "10.10.20.87",
+      "assigned_user_id": "USR-0038",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-001",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0039",
+      "hostname": "mtc-dt-0039",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:4d",
+      "ip_address": "10.10.10.88",
+      "assigned_user_id": "USR-0039",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-009",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0039",
+      "hostname": "mtc-ph-0039",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:4e",
+      "ip_address": "10.10.20.88",
+      "assigned_user_id": "USR-0039",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-009",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0040",
+      "hostname": "mtc-dt-0040",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:4f",
+      "ip_address": "10.10.10.89",
+      "assigned_user_id": "USR-0040",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-021",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0040",
+      "hostname": "mtc-ph-0040",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:50",
+      "ip_address": "10.10.20.89",
+      "assigned_user_id": "USR-0040",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-021",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0041",
+      "hostname": "mtc-dt-0041",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:51",
+      "ip_address": "10.10.10.90",
+      "assigned_user_id": "USR-0041",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-030",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0041",
+      "hostname": "mtc-ph-0041",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:52",
+      "ip_address": "10.10.20.90",
+      "assigned_user_id": "USR-0041",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-030",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0042",
+      "hostname": "mtc-dt-0042",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:53",
+      "ip_address": "10.10.10.91",
+      "assigned_user_id": "USR-0042",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-038",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0042",
+      "hostname": "mtc-ph-0042",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:54",
+      "ip_address": "10.10.20.91",
+      "assigned_user_id": "USR-0042",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-038",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-LT-0043",
+      "hostname": "mtc-lt-0043",
+      "device_type": "laptop",
+      "vendor": "Dell",
+      "model": "Latitude 5450",
+      "mac_address": "00:00:00:02:00:55",
+      "ip_address": "10.10.10.92",
+      "assigned_user_id": "USR-0043",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-046",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0043",
+      "hostname": "mtc-ph-0043",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:56",
+      "ip_address": "10.10.20.92",
+      "assigned_user_id": "USR-0043",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-046",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-LT-0044",
+      "hostname": "mtc-lt-0044",
+      "device_type": "laptop",
+      "vendor": "Dell",
+      "model": "Latitude 5450",
+      "mac_address": "00:00:00:02:00:57",
+      "ip_address": "10.10.10.93",
+      "assigned_user_id": "USR-0044",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-047",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0044",
+      "hostname": "mtc-ph-0044",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:58",
+      "ip_address": "10.10.20.93",
+      "assigned_user_id": "USR-0044",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-047",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-LT-0045",
+      "hostname": "mtc-lt-0045",
+      "device_type": "laptop",
+      "vendor": "Dell",
+      "model": "Latitude 5450",
+      "mac_address": "00:00:00:02:00:59",
+      "ip_address": "10.10.10.94",
+      "assigned_user_id": "USR-0045",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-048",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0045",
+      "hostname": "mtc-ph-0045",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:5a",
+      "ip_address": "10.10.20.94",
+      "assigned_user_id": "USR-0045",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-048",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-LT-0046",
+      "hostname": "mtc-lt-0046",
+      "device_type": "laptop",
+      "vendor": "Dell",
+      "model": "Latitude 5450",
+      "mac_address": "00:00:00:02:00:5b",
+      "ip_address": "10.10.10.95",
+      "assigned_user_id": "USR-0046",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-GF-003",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0046",
+      "hostname": "mtc-ph-0046",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:5c",
+      "ip_address": "10.10.20.95",
+      "assigned_user_id": "USR-0046",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-GF-003",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-LT-0047",
+      "hostname": "mtc-lt-0047",
+      "device_type": "laptop",
+      "vendor": "Dell",
+      "model": "Latitude 5450",
+      "mac_address": "00:00:00:02:00:5d",
+      "ip_address": "10.10.10.96",
+      "assigned_user_id": "USR-0047",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-GF-004",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0047",
+      "hostname": "mtc-ph-0047",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:5e",
+      "ip_address": "10.10.20.96",
+      "assigned_user_id": "USR-0047",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-GF-004",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-LT-0048",
+      "hostname": "mtc-lt-0048",
+      "device_type": "laptop",
+      "vendor": "Dell",
+      "model": "Latitude 5450",
+      "mac_address": "00:00:00:02:00:5f",
+      "ip_address": "10.10.10.97",
+      "assigned_user_id": "USR-0048",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-GF-005",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-DT-0049",
+      "hostname": "mtc-dt-0049",
+      "device_type": "desktop",
+      "vendor": "Dell",
+      "model": "OptiPlex 7020",
+      "mac_address": "00:00:00:02:00:60",
+      "ip_address": "10.10.10.98",
+      "assigned_user_id": "USR-0049",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-GF-001",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0049",
+      "hostname": "mtc-ph-0049",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:61",
+      "ip_address": "10.10.20.97",
+      "assigned_user_id": "USR-0049",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-GF-001",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-LT-0050",
+      "hostname": "mtc-lt-0050",
+      "device_type": "laptop",
+      "vendor": "Dell",
+      "model": "Latitude 5450",
+      "mac_address": "00:00:00:02:00:62",
+      "ip_address": "10.10.10.99",
+      "assigned_user_id": "USR-0050",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-GF-002",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PH-0050",
+      "hostname": "mtc-ph-0050",
+      "device_type": "voip_phone",
+      "vendor": "Cisco",
+      "model": "IP Phone 8841",
+      "mac_address": "00:00:00:02:00:63",
+      "ip_address": "10.10.20.98",
+      "assigned_user_id": "USR-0050",
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-GF-002",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PR-0001",
+      "hostname": "mtc-pr-gf-01",
+      "device_type": "printer",
+      "vendor": "HP",
+      "model": "LaserJet Enterprise M507dn",
+      "mac_address": "00:00:00:02:00:64",
+      "ip_address": "10.10.10.100",
+      "assigned_user_id": null,
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-GF-007",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PR-0002",
+      "hostname": "mtc-pr-1f-02",
+      "device_type": "printer",
+      "vendor": "HP",
+      "model": "LaserJet Enterprise M507dn",
+      "mac_address": "00:00:00:02:00:65",
+      "ip_address": "10.10.10.101",
+      "assigned_user_id": null,
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-020",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-PR-0003",
+      "hostname": "mtc-pr-1f-03",
+      "device_type": "printer",
+      "vendor": "HP",
+      "model": "LaserJet Enterprise M507dn",
+      "mac_address": "00:00:00:02:00:66",
+      "ip_address": "10.10.10.102",
+      "assigned_user_id": null,
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-050",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-CR-0001",
+      "hostname": "mtc-cr-01",
+      "device_type": "conference_room_system",
+      "vendor": "Cisco",
+      "model": "Webex Room Kit Mini",
+      "mac_address": "00:00:00:02:00:67",
+      "ip_address": "10.10.10.103",
+      "assigned_user_id": null,
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-GF-101",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-CR-0002",
+      "hostname": "mtc-cr-02",
+      "device_type": "conference_room_system",
+      "vendor": "Cisco",
+      "model": "Webex Room Kit Mini",
+      "mac_address": "00:00:00:02:00:68",
+      "ip_address": "10.10.10.104",
+      "assigned_user_id": null,
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-GF-102",
+        "access_point_id": null,
+        "ssid": null
+      }
+    },
+    {
+      "endpoint_id": "EP-CR-0003",
+      "hostname": "mtc-cr-03",
+      "device_type": "conference_room_system",
+      "vendor": "Cisco",
+      "model": "Webex Room Kit Mini",
+      "mac_address": "00:00:00:02:00:69",
+      "ip_address": "10.10.10.105",
+      "assigned_user_id": null,
+      "connection": {
+        "type": "wired",
+        "wall_jack_id": "WJ-1F-029",
+        "access_point_id": null,
+        "ssid": null
+      }
+    }
+  ],
+  "users": [
+    {
+      "user_id": "USR-0001",
+      "full_name": "Marcus Thornton",
+      "email": "marcus.thornton@meridiancontact.co.uk",
+      "job_title": "Senior IT Support Technician",
+      "department": "IT Support",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-IT-D1"
+    },
+    {
+      "user_id": "USR-0002",
+      "full_name": "Chloe Ashworth",
+      "email": "chloe.ashworth@meridiancontact.co.uk",
+      "job_title": "Junior IT Support Technician",
+      "department": "IT Support",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-IT-D2"
+    },
+    {
+      "user_id": "USR-0003",
+      "full_name": "Irene Hewitt-Bailey",
+      "email": "irene.hewitt-bailey@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD1-D2"
+    },
+    {
+      "user_id": "USR-0004",
+      "full_name": "Carly Tucker",
+      "email": "carly.tucker@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD2-D2"
+    },
+    {
+      "user_id": "USR-0005",
+      "full_name": "Gemma Moore",
+      "email": "gemma.moore@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD3-D2"
+    },
+    {
+      "user_id": "USR-0006",
+      "full_name": "Teresa Smith",
+      "email": "teresa.smith@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD4-D2"
+    },
+    {
+      "user_id": "USR-0007",
+      "full_name": "Emily Stephenson",
+      "email": "emily.stephenson@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD5-D2"
+    },
+    {
+      "user_id": "USR-0008",
+      "full_name": "Eileen Burton",
+      "email": "eileen.burton@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD1-D3"
+    },
+    {
+      "user_id": "USR-0009",
+      "full_name": "Nathan Myers",
+      "email": "nathan.myers@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD2-D3"
+    },
+    {
+      "user_id": "USR-0010",
+      "full_name": "Molly Hall",
+      "email": "molly.hall@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD3-D3"
+    },
+    {
+      "user_id": "USR-0011",
+      "full_name": "Yvonne Lewis",
+      "email": "yvonne.lewis@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD4-D3"
+    },
+    {
+      "user_id": "USR-0012",
+      "full_name": "Daniel Skinner",
+      "email": "daniel.skinner@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD5-D3"
+    },
+    {
+      "user_id": "USR-0013",
+      "full_name": "Sharon Kay-Ellis",
+      "email": "sharon.kay-ellis@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD1-D4"
+    },
+    {
+      "user_id": "USR-0014",
+      "full_name": "Steven Khan",
+      "email": "steven.khan@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD2-D4"
+    },
+    {
+      "user_id": "USR-0015",
+      "full_name": "Christopher Foster",
+      "email": "christopher.foster@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD3-D4"
+    },
+    {
+      "user_id": "USR-0016",
+      "full_name": "Leah Hill",
+      "email": "leah.hill@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD4-D4"
+    },
+    {
+      "user_id": "USR-0017",
+      "full_name": "Deborah Gill",
+      "email": "deborah.gill@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD5-D4"
+    },
+    {
+      "user_id": "USR-0018",
+      "full_name": "Elliot Smith",
+      "email": "elliot.smith@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD1-D5"
+    },
+    {
+      "user_id": "USR-0019",
+      "full_name": "Sylvia Green",
+      "email": "sylvia.green@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD2-D5"
+    },
+    {
+      "user_id": "USR-0020",
+      "full_name": "Gordon Allen",
+      "email": "gordon.allen@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD3-D5"
+    },
+    {
+      "user_id": "USR-0021",
+      "full_name": "Jamie Young",
+      "email": "jamie.young@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD4-D5"
+    },
+    {
+      "user_id": "USR-0022",
+      "full_name": "Andrew Brooks",
+      "email": "andrew.brooks@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD5-D5"
+    },
+    {
+      "user_id": "USR-0023",
+      "full_name": "Shane Johnston-Evans",
+      "email": "shane.johnston-evans@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD1-D6"
+    },
+    {
+      "user_id": "USR-0024",
+      "full_name": "Jade Hussain",
+      "email": "jade.hussain@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD2-D6"
+    },
+    {
+      "user_id": "USR-0025",
+      "full_name": "Lynda Williams",
+      "email": "lynda.williams@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD3-D6"
+    },
+    {
+      "user_id": "USR-0026",
+      "full_name": "Karl Ryan",
+      "email": "karl.ryan@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD4-D6"
+    },
+    {
+      "user_id": "USR-0027",
+      "full_name": "Jane Jackson",
+      "email": "jane.jackson@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD5-D6"
+    },
+    {
+      "user_id": "USR-0028",
+      "full_name": "Billy Pearson",
+      "email": "billy.pearson@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD1-D7"
+    },
+    {
+      "user_id": "USR-0029",
+      "full_name": "John Brown",
+      "email": "john.brown@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD2-D7"
+    },
+    {
+      "user_id": "USR-0030",
+      "full_name": "Jeremy Stokes",
+      "email": "jeremy.stokes@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD3-D7"
+    },
+    {
+      "user_id": "USR-0031",
+      "full_name": "Charles Martin",
+      "email": "charles.martin@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD4-D7"
+    },
+    {
+      "user_id": "USR-0032",
+      "full_name": "Anthony Ahmed",
+      "email": "anthony.ahmed@meridiancontact.co.uk",
+      "job_title": "Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD5-D7"
+    },
+    {
+      "user_id": "USR-0033",
+      "full_name": "Elliot Turner",
+      "email": "elliot.turner@meridiancontact.co.uk",
+      "job_title": "Senior Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD1-D8"
+    },
+    {
+      "user_id": "USR-0034",
+      "full_name": "Leonard Pugh",
+      "email": "leonard.pugh@meridiancontact.co.uk",
+      "job_title": "Senior Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD2-D8"
+    },
+    {
+      "user_id": "USR-0035",
+      "full_name": "Luke Thompson",
+      "email": "luke.thompson@meridiancontact.co.uk",
+      "job_title": "Senior Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD3-D8"
+    },
+    {
+      "user_id": "USR-0036",
+      "full_name": "Ann Smith",
+      "email": "ann.smith@meridiancontact.co.uk",
+      "job_title": "Senior Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD4-D8"
+    },
+    {
+      "user_id": "USR-0037",
+      "full_name": "Kieran Clark",
+      "email": "kieran.clark@meridiancontact.co.uk",
+      "job_title": "Senior Customer Service Advisor",
+      "department": "Call Centre Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD5-D8"
+    },
+    {
+      "user_id": "USR-0038",
+      "full_name": "Tina King",
+      "email": "tina.king@meridiancontact.co.uk",
+      "job_title": "Team Leader",
+      "department": "Team Leadership",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD1-D1"
+    },
+    {
+      "user_id": "USR-0039",
+      "full_name": "Katherine Oliver",
+      "email": "katherine.oliver@meridiancontact.co.uk",
+      "job_title": "Team Leader",
+      "department": "Team Leadership",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD2-D1"
+    },
+    {
+      "user_id": "USR-0040",
+      "full_name": "Leigh Hill",
+      "email": "leigh.hill@meridiancontact.co.uk",
+      "job_title": "Team Leader",
+      "department": "Team Leadership",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD3-D1"
+    },
+    {
+      "user_id": "USR-0041",
+      "full_name": "Brandon Wallace",
+      "email": "brandon.wallace@meridiancontact.co.uk",
+      "job_title": "Team Leader",
+      "department": "Team Leadership",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD4-D1"
+    },
+    {
+      "user_id": "USR-0042",
+      "full_name": "Vanessa Evans",
+      "email": "vanessa.evans@meridiancontact.co.uk",
+      "job_title": "Team Leader",
+      "department": "Team Leadership",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-POD5-D1"
+    },
+    {
+      "user_id": "USR-0043",
+      "full_name": "Gerald Hancock-Taylor",
+      "email": "gerald.hancock-taylor@meridiancontact.co.uk",
+      "job_title": "Workforce Planning Analyst",
+      "department": "Workforce Management",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-WFM-D1"
+    },
+    {
+      "user_id": "USR-0044",
+      "full_name": "Bruce Butler-Stokes",
+      "email": "bruce.butler-stokes@meridiancontact.co.uk",
+      "job_title": "Quality Assurance Analyst",
+      "department": "Quality & Training",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-QA-D1"
+    },
+    {
+      "user_id": "USR-0045",
+      "full_name": "Gerald Watson",
+      "email": "gerald.watson@meridiancontact.co.uk",
+      "job_title": "Training Coordinator",
+      "department": "Quality & Training",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-1F",
+      "desk_location": "1F-TRAINING-D1"
+    },
+    {
+      "user_id": "USR-0046",
+      "full_name": "Chelsea Phillips-Buckley",
+      "email": "chelsea.phillips-buckley@meridiancontact.co.uk",
+      "job_title": "Operations Manager",
+      "department": "Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-GF",
+      "desk_location": "GF-OPS-D1"
+    },
+    {
+      "user_id": "USR-0047",
+      "full_name": "Barbara Andrews",
+      "email": "barbara.andrews@meridiancontact.co.uk",
+      "job_title": "Operations Manager",
+      "department": "Operations",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-GF",
+      "desk_location": "GF-OPS-D2"
+    },
+    {
+      "user_id": "USR-0048",
+      "full_name": "Clifford Davies-Harrison",
+      "email": "clifford.davies-harrison@meridiancontact.co.uk",
+      "job_title": "Facilities Coordinator",
+      "department": "Facilities",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-GF",
+      "desk_location": "GF-FACILITIES-D1"
+    },
+    {
+      "user_id": "USR-0049",
+      "full_name": "Oliver Birch",
+      "email": "oliver.birch@meridiancontact.co.uk",
+      "job_title": "Office Administrator",
+      "department": "Administration",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-GF",
+      "desk_location": "GF-RECEPTION-D1"
+    },
+    {
+      "user_id": "USR-0050",
+      "full_name": "Brett Parkinson",
+      "email": "brett.parkinson@meridiancontact.co.uk",
+      "job_title": "HR Business Partner",
+      "department": "HR",
+      "site_id": "SITE-HQ",
+      "floor_id": "FLOOR-GF",
+      "desk_location": "GF-HR-D1"
+    }
+  ],
+  "vlans": [
+    {
+      "vlan_id": 10,
+      "name": "STAFF_DATA",
+      "subnet": "10.10.10.0/24",
+      "gateway": "10.10.10.1",
+      "purpose": "Wired PCs and docked laptops"
+    },
+    {
+      "vlan_id": 20,
+      "name": "VOIP",
+      "subnet": "10.10.20.0/24",
+      "gateway": "10.10.20.1",
+      "purpose": "IP phones and softphone traffic"
+    },
+    {
+      "vlan_id": 30,
+      "name": "WIFI_STAFF",
+      "subnet": "10.10.30.0/24",
+      "gateway": "10.10.30.1",
+      "purpose": "Corporate WiFi for staff devices"
+    },
+    {
+      "vlan_id": 40,
+      "name": "GUEST",
+      "subnet": "10.10.40.0/24",
+      "gateway": "10.10.40.1",
+      "purpose": "Visitor WiFi — internet only, captive portal"
+    },
+    {
+      "vlan_id": 99,
+      "name": "MGMT",
+      "subnet": "10.10.99.0/24",
+      "gateway": "10.10.99.1",
+      "purpose": "Switch, AP, controller, firewall management"
+    }
+  ],
+  "links": [
+    {
+      "link_id": "LINK-BACKBONE-B-01",
+      "endpoint_a": {
+        "device_id": "SW-A-DIST",
+        "port_id": "SW-A-DIST-Gi0/19"
+      },
+      "endpoint_b": {
+        "device_id": "SW-B-01",
+        "port_id": "SW-B-01-Gi0/47"
+      },
+      "media": "fibre_multi_mode",
+      "speed": "10G",
+      "lag_group_id": "LAG-DIST-B",
+      "carries_vlans": [
+        10,
+        20,
+        30,
+        40,
+        99
+      ],
+      "purpose": "Backbone RACK-A to RACK-B, strand 1 of 2 (LAG member)"
+    },
+    {
+      "link_id": "LINK-BACKBONE-B-02",
+      "endpoint_a": {
+        "device_id": "SW-A-DIST",
+        "port_id": "SW-A-DIST-Gi0/20"
+      },
+      "endpoint_b": {
+        "device_id": "SW-B-01",
+        "port_id": "SW-B-01-Gi0/48"
+      },
+      "media": "fibre_multi_mode",
+      "speed": "10G",
+      "lag_group_id": "LAG-DIST-B",
+      "carries_vlans": [
+        10,
+        20,
+        30,
+        40,
+        99
+      ],
+      "purpose": "Backbone RACK-A to RACK-B, strand 2 of 2 (LAG member)"
+    },
+    {
+      "link_id": "LINK-BACKBONE-C-01",
+      "endpoint_a": {
+        "device_id": "SW-A-DIST",
+        "port_id": "SW-A-DIST-Gi0/21"
+      },
+      "endpoint_b": {
+        "device_id": "SW-C-01",
+        "port_id": "SW-C-01-Gi0/47"
+      },
+      "media": "fibre_multi_mode",
+      "speed": "10G",
+      "lag_group_id": "LAG-DIST-C",
+      "carries_vlans": [
+        10,
+        20,
+        30,
+        40,
+        99
+      ],
+      "purpose": "Backbone RACK-A to RACK-C, strand 1 of 2 (LAG member)"
+    },
+    {
+      "link_id": "LINK-BACKBONE-C-02",
+      "endpoint_a": {
+        "device_id": "SW-A-DIST",
+        "port_id": "SW-A-DIST-Gi0/22"
+      },
+      "endpoint_b": {
+        "device_id": "SW-C-01",
+        "port_id": "SW-C-01-Gi0/48"
+      },
+      "media": "fibre_multi_mode",
+      "speed": "10G",
+      "lag_group_id": "LAG-DIST-C",
+      "carries_vlans": [
+        10,
+        20,
+        30,
+        40,
+        99
+      ],
+      "purpose": "Backbone RACK-A to RACK-C, strand 2 of 2 (LAG member)"
+    },
+    {
+      "link_id": "LINK-BACKBONE-D-01",
+      "endpoint_a": {
+        "device_id": "SW-A-DIST",
+        "port_id": "SW-A-DIST-Gi0/23"
+      },
+      "endpoint_b": {
+        "device_id": "SW-D-01",
+        "port_id": "SW-D-01-Gi0/47"
+      },
+      "media": "fibre_multi_mode",
+      "speed": "10G",
+      "lag_group_id": "LAG-DIST-D",
+      "carries_vlans": [
+        10,
+        20,
+        30,
+        40,
+        99
+      ],
+      "purpose": "Backbone RACK-A to RACK-D, strand 1 of 2 (LAG member)"
+    },
+    {
+      "link_id": "LINK-BACKBONE-D-02",
+      "endpoint_a": {
+        "device_id": "SW-A-DIST",
+        "port_id": "SW-A-DIST-Gi0/24"
+      },
+      "endpoint_b": {
+        "device_id": "SW-D-01",
+        "port_id": "SW-D-01-Gi0/48"
+      },
+      "media": "fibre_multi_mode",
+      "speed": "10G",
+      "lag_group_id": "LAG-DIST-D",
+      "carries_vlans": [
+        10,
+        20,
+        30,
+        40,
+        99
+      ],
+      "purpose": "Backbone RACK-A to RACK-D, strand 2 of 2 (LAG member)"
+    },
+    {
+      "link_id": "LINK-RACKA-INTERNAL",
+      "endpoint_a": {
+        "device_id": "SW-A-DIST",
+        "port_id": "SW-A-DIST-Gi0/1"
+      },
+      "endpoint_b": {
+        "device_id": "SW-A-01",
+        "port_id": "SW-A-01-Gi0/48"
+      },
+      "media": "copper_cat6a",
+      "speed": "10G",
+      "lag_group_id": null,
+      "carries_vlans": [
+        10,
+        20,
+        30,
+        40,
+        99
+      ],
+      "purpose": "In-rack trunk RACK-A distribution to access"
+    }
+  ]
+}
