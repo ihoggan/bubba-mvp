@@ -1,0 +1,15 @@
+README.md
+pyproject.toml
+src/__init__.py
+src/cli.py
+src/engine.py
+src/models.py
+src/bubba_mvp.egg-info/PKG-INFO
+src/bubba_mvp.egg-info/SOURCES.txt
+src/bubba_mvp.egg-info/dependency_links.txt
+src/bubba_mvp.egg-info/requires.txt
+src/bubba_mvp.egg-info/top_level.txt
+tests/test_agent.py
+tests/test_api.py
+tests/test_engine.py
+tests/test_reasoning.py

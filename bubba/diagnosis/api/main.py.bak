@@ -1,10 +1,9 @@
 """FastAPI endpoints for the sandbox."""
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from pydantic import BaseModel
 
 from bubba.diagnosis.application.service import InvestigationService
-from bubba.diagnosis.domain.export import DiagnosisExport
 
 app = FastAPI(title="DecisionDesk v2 MVP", version="0.1.0")
 service = InvestigationService()
@@ -12,12 +11,8 @@ service = InvestigationService()
 
 class HealthResponse(BaseModel):
     """Health response payload."""
+
     status: str
-
-
-class ExportResponse(BaseModel):
-    """Diagnosis export response."""
-    diagnosis: dict
 
 
 @app.get("/health", response_model=HealthResponse)
@@ -44,21 +39,3 @@ def demo() -> dict:
             for e in investigation.timeline
         ],
     }
-
-
-@app.post("/diagnoses/demo/export", response_model=ExportResponse)
-def export_demo() -> ExportResponse:
-    """Export the demo investigation as a verified diagnosis.
-    
-    Returns 400 if the investigation is not export-ready:
-    - Missing root_cause
-    - engineer_confirmed is False
-    - status is not resolved/closed
-    """
-    investigation = service.create_demo()
-    
-    try:
-        export = DiagnosisExport.from_investigation(investigation)
-        return ExportResponse(diagnosis=export.to_dict())
-    except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))

@@ -4,10 +4,10 @@ import streamlit as st
 
 from bubba.diagnosis.application.service import InvestigationService
 
-st.set_page_config(page_title="Bubba.Diagnosis", layout="wide")
+st.set_page_config(page_title="DecisionDesk v2 MVP", layout="wide")
 service = InvestigationService()
 
-st.title("Bubba.Diagnosis")
+st.title("DecisionDesk v2 MVP")
 st.caption("Evidence-driven incident investigation sandbox — synthetic data only")
 
 investigation = service.create_demo()
