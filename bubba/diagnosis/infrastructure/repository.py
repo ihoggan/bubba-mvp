@@ -8,6 +8,10 @@ from typing import Optional
 
 from bubba.diagnosis.domain.models import Investigation
 from bubba.diagnosis.domain.export import DiagnosisExport
+from bubba.diagnosis.infrastructure.serializer import (
+    serialize_investigation,
+    deserialize_investigation,
+)
 
 
 class InvestigationRepository:
@@ -63,8 +67,8 @@ class InvestigationRepository:
         Returns:
             Investigation ID
         """
-        # Serialize investigation to JSON (simple dataclass → dict approach)
-        investigation_json = self._serialize_investigation(investigation)
+        # Serialize full investigation to JSON
+        investigation_json = serialize_investigation(investigation)
         
         now = datetime.now().isoformat()
         
@@ -107,7 +111,7 @@ class InvestigationRepository:
         if not row:
             return None
         
-        return self._deserialize_investigation(row[0])
+        return deserialize_investigation(row[0])
 
     def search_by_symptom(self, query: str) -> list[dict]:
         """Search investigations by symptom keyword.
@@ -193,49 +197,3 @@ class InvestigationRepository:
             }
             for row in rows
         ]
-
-    @staticmethod
-    def _serialize_investigation(investigation: Investigation) -> str:
-        """Serialize Investigation to JSON string.
-        
-        Uses a simplified approach: convert to ExportedDiagnosis (validated model)
-        then to JSON. This ensures we're only storing what's export-ready.
-        """
-        try:
-            # Try to export (validates structure)
-            export = DiagnosisExport.from_investigation(investigation)
-            export_dict = export.to_dict()
-        except ValueError:
-            # If not export-ready, store raw structure
-            export_dict = {
-                "id": str(investigation.id),
-                "title": investigation.title,
-                "status": investigation.status.value,
-                "root_cause": investigation.root_cause,
-                "engineer_confirmed": investigation.engineer_confirmed,
-                "symptom": {
-                    "what_is_wrong": investigation.symptom.what_is_wrong,
-                    "expected": investigation.symptom.expected_behaviour,
-                    "actual": investigation.symptom.actual_behaviour,
-                    "scope": investigation.symptom.affected_scope
-                }
-            }
-        
-        return json.dumps(export_dict, default=str)
-
-    @staticmethod
-    def _deserialize_investigation(json_str: str) -> Optional[Investigation]:
-        """Deserialize Investigation from JSON string.
-        
-        Note: This is lossy — we can reconstruct the summary but not rebuild
-        the full Investigation object from the export format. For now, this
-        returns None; full deserialization requires a data migration.
-        """
-        try:
-            data = json.loads(json_str)
-            # For now, we just parse the JSON for display in search results.
-            # Full Investigation reconstruction would require storing the
-            # raw dataclass structure, not just the export format.
-            return None
-        except json.JSONDecodeError:
-            return None
