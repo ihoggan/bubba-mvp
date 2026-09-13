@@ -312,3 +312,19 @@ The test suite (`tests/test_engine.py`) is an executable specification of how th
 **Status:** MVP complete, ready for field testing.  
 **Built:** September 2026  
 **For:** Iain Hoggan, IT tech + AI/ML explorer
+
+## Current Status
+
+**Phase A Complete:** Investigation lifecycle with Streamlit prototype
+**In Progress:** Migration to PyQt desktop app (Phase B begins)
+
+For the working Streamlit version:
+```bash
+git checkout v0.1-streamlit-prototype
+```
+
+For latest development (PyQt):
+```bash
+git checkout main  # stays on latest
+```
+
