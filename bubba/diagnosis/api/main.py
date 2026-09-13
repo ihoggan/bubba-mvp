@@ -5,6 +5,7 @@ from pydantic import BaseModel
 
 from bubba.diagnosis.application.service import InvestigationService
 from bubba.diagnosis.domain.export import DiagnosisExport
+from bubba.diagnosis.infrastructure.repository import InvestigationRepository
 
 app = FastAPI(title="DecisionDesk v2 MVP", version="0.1.0")
 service = InvestigationService()
@@ -18,6 +19,24 @@ class HealthResponse(BaseModel):
 class ExportResponse(BaseModel):
     """Diagnosis export response."""
     diagnosis: dict
+
+
+class SearchResult(BaseModel):
+    """Single search result summary."""
+    id: str
+    title: str
+    symptom: str
+    root_cause: str | None
+    status: str
+    engineer_confirmed: bool
+
+
+class SearchResponse(BaseModel):
+    """Search results response."""
+    query: str
+    search_type: str
+    results: list[SearchResult]
+    count: int
 
 
 @app.get("/health", response_model=HealthResponse)
@@ -62,3 +81,63 @@ def export_demo() -> ExportResponse:
         return ExportResponse(diagnosis=export.to_dict())
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
+
+
+@app.get("/diagnoses/search/symptom", response_model=SearchResponse)
+def search_by_symptom(q: str) -> SearchResponse:
+    """Search investigations by symptom keyword.
+    
+    Args:
+        q: Search query term
+        
+    Returns:
+        List of matching investigations
+    """
+    repo = InvestigationRepository()
+    results = repo.search_by_symptom(q)
+    
+    return SearchResponse(
+        query=q,
+        search_type="symptom",
+        results=[SearchResult(**r) for r in results],
+        count=len(results)
+    )
+
+
+@app.get("/diagnoses/search/root_cause", response_model=SearchResponse)
+def search_by_root_cause(q: str) -> SearchResponse:
+    """Search investigations by root cause keyword.
+    
+    Args:
+        q: Search query term
+        
+    Returns:
+        List of matching investigations
+    """
+    repo = InvestigationRepository()
+    results = repo.search_by_root_cause(q)
+    
+    return SearchResponse(
+        query=q,
+        search_type="root_cause",
+        results=[SearchResult(**r) for r in results],
+        count=len(results)
+    )
+
+
+@app.get("/diagnoses/list", response_model=SearchResponse)
+def list_all_diagnoses() -> SearchResponse:
+    """List all stored investigations, newest first.
+    
+    Returns:
+        List of all investigations
+    """
+    repo = InvestigationRepository()
+    results = repo.list_all()
+    
+    return SearchResponse(
+        query="",
+        search_type="all",
+        results=[SearchResult(**r) for r in results],
+        count=len(results)
+    )
