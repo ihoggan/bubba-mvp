@@ -107,9 +107,49 @@ class TestInvestigationRepository:
         # The key is: list should work and return results
         assert len(all_results) >= 1
 
+    def test_roundtrip_preserves_full_investigation(self, temp_db):
+        """save() then get_by_id() must reconstruct the full investigation.
+
+        Regression guard: the demo carries tests, executions, interventions and
+        verifications. A field-name mismatch in the deserializer previously made
+        get_by_id() silently return None for any such investigation.
+        """
+        investigation = InvestigationService().create_demo()
+        repo = InvestigationRepository(db_path=temp_db)
+        repo.save(investigation)
+
+        loaded = repo.get_by_id(str(investigation.id))
+
+        assert loaded is not None
+        assert loaded.id == investigation.id
+        assert loaded.title == investigation.title
+        assert loaded.status == investigation.status
+        assert loaded.root_cause == investigation.root_cause
+        assert loaded.engineer_confirmed == investigation.engineer_confirmed
+        assert len(loaded.hypotheses) == len(investigation.hypotheses)
+        assert len(loaded.tests) == len(investigation.tests)
+        assert len(loaded.executions) == len(investigation.executions)
+        assert len(loaded.interventions) == len(investigation.interventions)
+        assert len(loaded.verifications) == len(investigation.verifications)
+        assert len(loaded.timeline) == len(investigation.timeline)
+        # nested enum + fidelity spot-checks
+        assert loaded.tests[0].risk == investigation.tests[0].risk
+        assert loaded.executions[0].result == investigation.executions[0].result
+        assert loaded.verifications[0].passed is True
+
 
 class TestSearchEndpoints:
     """Test search API endpoints."""
+
+    @pytest.fixture(autouse=True)
+    def isolate_db(self, tmp_path, monkeypatch):
+        """Point the API's repository at a throwaway DB, not the real ~/.bubba one.
+
+        The endpoints call ``InvestigationRepository()`` with no path, which
+        resolves via ``BUBBA_DB_PATH``. Setting it here keeps these tests
+        deterministic and stops them reading or writing the user's real data.
+        """
+        monkeypatch.setenv("BUBBA_DB_PATH", str(tmp_path / "endpoint_test.db"))
 
     def test_search_symptom_endpoint(self):
         """GET /diagnoses/search/symptom should return results."""

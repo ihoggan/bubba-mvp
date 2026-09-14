@@ -1,4 +1,10 @@
-"""JSON serialization for Investigation domain objects."""
+"""JSON serialization for Investigation domain objects.
+
+Round-trip contract: an Investigation serialized with ``serialize_investigation``
+must reconstruct to an equivalent Investigation via ``deserialize_investigation``,
+preserving every nested collection (hypotheses, tests, executions, confidence
+updates, interventions, verifications, timeline) and their identity/timestamps.
+"""
 
 import json
 from dataclasses import asdict, is_dataclass
@@ -7,253 +13,241 @@ from enum import Enum
 from typing import Any
 from uuid import UUID
 
-from bubba.diagnosis.domain.models import Investigation
+from bubba.diagnosis.domain.models import (
+    BeliefLevel,
+    ConfidenceUpdate,
+    Evidence,
+    Hypothesis,
+    HypothesisExpectation,
+    HypothesisStatus,
+    Intervention,
+    InterventionStatus,
+    Investigation,
+    InvestigationStatus,
+    Symptom,
+    TestDefinition,
+    TestExecution,
+    TestRisk,
+    TimelineEvent,
+    Verification,
+)
 
 
 class InvestigationEncoder(json.JSONEncoder):
     """JSON encoder for Investigation and related objects."""
-    
+
     def default(self, obj: Any) -> Any:
-        """Encode objects to JSON-serializable format."""
         if isinstance(obj, (datetime, UUID)):
             return str(obj)
-        elif isinstance(obj, Enum):
+        if isinstance(obj, Enum):
             return obj.value
-        elif is_dataclass(obj):
+        if is_dataclass(obj):
             return asdict(obj)
         return super().default(obj)
 
 
 def serialize_investigation(investigation: Investigation) -> str:
-    """Serialize Investigation to JSON string.
-    
-    Args:
-        investigation: Investigation object to serialize
-        
-    Returns:
-        JSON string representation
-    """
-    # Convert to dict first, then serialize
+    """Serialize an Investigation to a JSON string."""
     inv_dict = asdict(investigation)
     return json.dumps(inv_dict, cls=InvestigationEncoder, default=str)
 
 
 def deserialize_investigation(json_str: str) -> Investigation | None:
-    """Deserialize Investigation from JSON string.
-    
-    Args:
-        json_str: JSON string to deserialize
-        
-    Returns:
-        Investigation object, or None if deserialization fails
+    """Deserialize an Investigation from a JSON string.
+
+    Returns None only when the input is not a JSON object. A structural
+    mismatch against the domain model is a real defect and is allowed to
+    raise, rather than being silently swallowed into a None.
     """
+    data = json.loads(json_str)
+    if not isinstance(data, dict):
+        return None
+
+    investigation = Investigation(
+        title=data.get("title", ""),
+        symptom=_rebuild_symptom(data.get("symptom", {})),
+        status=_enum(InvestigationStatus, data.get("status"), InvestigationStatus.NEW),
+    )
+    investigation.id = _uuid(data.get("id"), investigation.id)
+
+    investigation.hypotheses = [_rebuild_hypothesis(h) for h in data.get("hypotheses", [])]
+    investigation.tests = [_rebuild_test(t) for t in data.get("tests", [])]
+    investigation.executions = [_rebuild_execution(e) for e in data.get("executions", [])]
+    investigation.confidence_updates = [
+        _rebuild_confidence_update(c) for c in data.get("confidence_updates", [])
+    ]
+    investigation.interventions = [_rebuild_intervention(i) for i in data.get("interventions", [])]
+    investigation.verifications = [_rebuild_verification(v) for v in data.get("verifications", [])]
+    investigation.timeline = [_rebuild_timeline_event(ev) for ev in data.get("timeline", [])]
+
+    investigation.root_cause = data.get("root_cause")
+    investigation.engineer_confirmed = data.get("engineer_confirmed", False)
+    return investigation
+
+
+# ---------------------------------------------------------------------------
+# Scalar coercion helpers
+# ---------------------------------------------------------------------------
+
+def _uuid(value: Any, default: UUID | None = None) -> UUID:
+    if value in (None, ""):
+        if default is None:
+            raise ValueError("missing required UUID with no default")
+        return default
+    return UUID(str(value))
+
+
+def _uuid_list(values: Any) -> list[UUID]:
+    return [UUID(str(v)) for v in (values or []) if v]
+
+
+def _enum(enum_cls, value: Any, default):
+    if value in (None, ""):
+        return default
+    return enum_cls(value)
+
+
+def _dt(value: Any) -> datetime | None:
+    if not value:
+        return None
     try:
-        data = json.loads(json_str)
-        
-        if not isinstance(data, dict):
-            print(f"Error: JSON data is not a dict, got {type(data)}")
-            return None
-        
-        # Reconstruct Investigation from JSON dict
-        from bubba.diagnosis.domain.models import InvestigationStatus
-        
-        investigation = Investigation(
-            title=data.get("title", ""),
-            symptom=__rebuild_symptom(data.get("symptom", {})),
-            status=__rebuild_enum(data.get("status", "new"), "InvestigationStatus"),
-        )
-        
-        # Restore ID
-        investigation.id = UUID(data.get("id", investigation.id))
-        
-        # Restore hypotheses
-        for hyp_data in data.get("hypotheses", []):
-            hypothesis = __rebuild_hypothesis(hyp_data)
-            investigation.hypotheses.append(hypothesis)
-        
-        # Restore tests
-        for test_data in data.get("tests", []):
-            test = __rebuild_test(test_data)
-            investigation.tests.append(test)
-        
-        # Restore executions
-        for exec_data in data.get("executions", []):
-            execution = __rebuild_execution(exec_data)
-            investigation.executions.append(execution)
-        
-        # Restore interventions
-        for interv_data in data.get("interventions", []):
-            intervention = __rebuild_intervention(interv_data)
-            investigation.interventions.append(intervention)
-        
-        # Restore verifications
-        for verif_data in data.get("verifications", []):
-            verification = __rebuild_verification(verif_data)
-            investigation.verifications.append(verification)
-        
-        # Restore timeline
-        for event_data in data.get("timeline", []):
-            event = __rebuild_timeline_event(event_data)
-            investigation.timeline.append(event)
-        
-        # Restore other fields
-        investigation.root_cause = data.get("root_cause")
-        investigation.engineer_confirmed = data.get("engineer_confirmed", False)
-        
-        return investigation
-        
-    except (json.JSONDecodeError, ValueError, KeyError, TypeError) as e:
-        print(f"Failed to deserialize investigation: {e}")
+        return datetime.fromisoformat(str(value))
+    except (ValueError, TypeError):
         return None
 
 
-# ============================================================================
-# HELPER FUNCTIONS: Rebuild domain objects from dicts
-# ============================================================================
+# ---------------------------------------------------------------------------
+# Domain object reconstruction (mirrors bubba.diagnosis.domain.models)
+# ---------------------------------------------------------------------------
 
-def __rebuild_symptom(data: dict):
-    """Rebuild Symptom from dict."""
-    from bubba.diagnosis.domain.models import Symptom
-    
-    return Symptom(
+def _rebuild_symptom(data: dict) -> Symptom:
+    symptom = Symptom(
         what_is_wrong=data.get("what_is_wrong", ""),
         expected_behaviour=data.get("expected_behaviour", ""),
         actual_behaviour=data.get("actual_behaviour", ""),
         affected_scope=data.get("affected_scope", ""),
     )
+    symptom.id = _uuid(data.get("id"), symptom.id)
+    return symptom
 
 
-def __rebuild_hypothesis(data: dict):
-    """Rebuild Hypothesis from dict."""
-    from bubba.diagnosis.domain.models import Hypothesis
-    
+def _rebuild_expectation(data: dict) -> HypothesisExpectation:
+    return HypothesisExpectation(
+        test_id=_uuid(data.get("test_id")),
+        expected_positive=data.get("expected_positive", ""),
+        expected_negative=data.get("expected_negative", ""),
+        interpretation=data.get("interpretation", ""),
+    )
+
+
+def _rebuild_hypothesis(data: dict) -> Hypothesis:
     hypothesis = Hypothesis(
         statement=data.get("statement", ""),
         rationale=data.get("rationale", ""),
     )
-    hypothesis.id = UUID(data.get("id", hypothesis.id))
-    hypothesis.belief = __rebuild_enum(data.get("belief", "unassessed"), "BeliefLevel")
-    hypothesis.status = __rebuild_enum(data.get("status", "active"), "HypothesisStatus")
-    hypothesis.supporting_evidence = [UUID(e) for e in data.get("supporting_evidence", []) if e]
-    hypothesis.contradicting_evidence = [UUID(e) for e in data.get("contradicting_evidence", []) if e]
-    
+    hypothesis.id = _uuid(data.get("id"), hypothesis.id)
+    hypothesis.status = _enum(HypothesisStatus, data.get("status"), HypothesisStatus.ACTIVE)
+    hypothesis.belief = _enum(BeliefLevel, data.get("belief"), BeliefLevel.UNASSESSED)
+    hypothesis.expectations = [_rebuild_expectation(e) for e in data.get("expectations", [])]
+    hypothesis.supporting_evidence = _uuid_list(data.get("supporting_evidence"))
+    hypothesis.contradicting_evidence = _uuid_list(data.get("contradicting_evidence"))
     return hypothesis
 
 
-def __rebuild_test(data: dict):
-    """Rebuild TestDefinition from dict."""
-    from bubba.diagnosis.domain.models import TestDefinition
-    
+def _rebuild_test(data: dict) -> TestDefinition:
     test = TestDefinition(
         name=data.get("name", ""),
-        description=data.get("description", ""),
-        method=data.get("method", ""),
-        expected_result=data.get("expected_result", ""),
+        purpose=data.get("purpose", ""),
+        risk=_enum(TestRisk, data.get("risk"), TestRisk.READ_ONLY),
+        reversibility=data.get("reversibility", ""),
+        observability=data.get("observability", ""),
+        cost=data.get("cost", ""),
     )
-    test.id = UUID(data.get("id", test.id))
-    test.risk = __rebuild_enum(data.get("risk", "read_only"), "TestRisk")
-    
+    test.id = _uuid(data.get("id"), test.id)
+    test.applicable_hypotheses = _uuid_list(data.get("applicable_hypotheses"))
     return test
 
 
-def __rebuild_execution(data: dict):
-    """Rebuild TestExecution from dict."""
-    from bubba.diagnosis.domain.models import TestExecution
-    
-    execution = TestExecution(
-        test_id=UUID(data.get("test_id", "00000000-0000-0000-0000-000000000000")),
-    )
-    execution.id = UUID(data.get("id", execution.id))
-    execution.occurred_at = __rebuild_datetime(data.get("occurred_at"))
-    execution.result = data.get("result", "")
-    execution.observation = data.get("observation", "")
-    
-    # Rebuild evidence
-    for evidence_data in data.get("evidence", []):
-        evidence = __rebuild_evidence(evidence_data)
-        execution.evidence.append(evidence)
-    
-    return execution
-
-
-def __rebuild_evidence(data: dict):
-    """Rebuild Evidence from dict."""
-    from bubba.diagnosis.domain.models import Evidence
-    
+def _rebuild_evidence(data: dict) -> Evidence:
     evidence = Evidence(
         observation=data.get("observation", ""),
         source=data.get("source", ""),
         reliability=data.get("reliability", "unknown"),
+        context=data.get("context", ""),
     )
-    evidence.id = UUID(data.get("id", evidence.id))
-    
+    evidence.id = _uuid(data.get("id"), evidence.id)
+    observed_at = _dt(data.get("observed_at"))
+    if observed_at is not None:
+        evidence.observed_at = observed_at
     return evidence
 
 
-def __rebuild_intervention(data: dict):
-    """Rebuild Intervention from dict."""
-    from bubba.diagnosis.domain.models import Intervention
-    
+def _rebuild_execution(data: dict) -> TestExecution:
+    execution = TestExecution(
+        test_id=_uuid(data.get("test_id")),
+        method=data.get("method", ""),
+        observation=data.get("observation", ""),
+        result=data.get("result", ""),
+    )
+    execution.id = _uuid(data.get("id"), execution.id)
+    executed_at = _dt(data.get("executed_at"))
+    if executed_at is not None:
+        execution.executed_at = executed_at
+    execution.evidence = [_rebuild_evidence(e) for e in data.get("evidence", [])]
+    return execution
+
+
+def _rebuild_confidence_update(data: dict) -> ConfidenceUpdate:
+    update = ConfidenceUpdate(
+        hypothesis_id=_uuid(data.get("hypothesis_id")),
+        previous=_enum(BeliefLevel, data.get("previous"), BeliefLevel.UNASSESSED),
+        new=_enum(BeliefLevel, data.get("new"), BeliefLevel.UNASSESSED),
+        rationale=data.get("rationale", ""),
+        evidence_ids=_uuid_list(data.get("evidence_ids")),
+    )
+    update.id = _uuid(data.get("id"), update.id)
+    created_at = _dt(data.get("created_at"))
+    if created_at is not None:
+        update.created_at = created_at
+    return update
+
+
+def _rebuild_intervention(data: dict) -> Intervention:
     intervention = Intervention(
         description=data.get("description", ""),
         expected_effect=data.get("expected_effect", ""),
+        target=data.get("target", ""),
+        status=_enum(InterventionStatus, data.get("status"), InterventionStatus.PROPOSED),
     )
-    intervention.id = UUID(data.get("id", intervention.id))
-    intervention.status = __rebuild_enum(data.get("status", "proposed"), "InterventionStatus")
-    
+    intervention.id = _uuid(data.get("id"), intervention.id)
+    intervention.executed_at = _dt(data.get("executed_at"))
     return intervention
 
 
-def __rebuild_verification(data: dict):
-    """Rebuild Verification from dict."""
-    from bubba.diagnosis.domain.models import Verification
-    
+def _rebuild_verification(data: dict) -> Verification:
     verification = Verification(
-        description=data.get("description", ""),
+        criterion=data.get("criterion", ""),
+        method=data.get("method", ""),
+        expected_result=data.get("expected_result", ""),
         actual_result=data.get("actual_result", ""),
         passed=data.get("passed", False),
+        evidence_ids=_uuid_list(data.get("evidence_ids")),
     )
-    verification.id = UUID(data.get("id", verification.id))
-    
+    verification.id = _uuid(data.get("id"), verification.id)
+    verified_at = _dt(data.get("verified_at"))
+    if verified_at is not None:
+        verification.verified_at = verified_at
     return verification
 
 
-def __rebuild_timeline_event(data: dict):
-    """Rebuild TimelineEvent from dict."""
-    from bubba.diagnosis.domain.models import TimelineEvent
-    
+def _rebuild_timeline_event(data: dict) -> TimelineEvent:
     event = TimelineEvent(
         event_type=data.get("event_type", ""),
         summary=data.get("summary", ""),
-        payload=data.get("payload"),
+        payload=data.get("payload") or {},
     )
-    event.occurred_at = __rebuild_datetime(data.get("occurred_at"))
-    
+    event.id = _uuid(data.get("id"), event.id)
+    occurred_at = _dt(data.get("occurred_at"))
+    if occurred_at is not None:
+        event.occurred_at = occurred_at
     return event
-
-
-def __rebuild_datetime(dt_str: str) -> datetime:
-    """Rebuild datetime from ISO string."""
-    if not dt_str:
-        return datetime.now()
-    try:
-        return datetime.fromisoformat(dt_str)
-    except (ValueError, TypeError):
-        return datetime.now()
-
-
-def __rebuild_enum(value: str, enum_name: str):
-    """Rebuild Enum from string value."""
-    from bubba.diagnosis import domain
-    
-    if not value:
-        return None
-    
-    try:
-        enum_class = getattr(domain.models, enum_name)
-        return enum_class(value)
-    except (ValueError, AttributeError):
-        try:
-            return list(enum_class)[0]  # Fallback to first enum value
-        except:
-            return None

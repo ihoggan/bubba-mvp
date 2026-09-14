@@ -1,6 +1,7 @@
 """SQLite repository for investigation persistence."""
 
 import json
+import os
 import sqlite3
 from datetime import datetime
 from pathlib import Path
@@ -17,12 +18,19 @@ from bubba.diagnosis.infrastructure.serializer import (
 class InvestigationRepository:
     """Persist and query investigations in SQLite."""
 
-    def __init__(self, db_path: str = "~/.bubba/diagnoses.db"):
+    DEFAULT_DB_PATH = "~/.bubba/diagnoses.db"
+
+    def __init__(self, db_path: str | None = None):
         """Initialize repository with SQLite database.
-        
+
         Args:
-            db_path: Path to SQLite database file (~/path expanded)
+            db_path: Path to SQLite database file (~/path expanded). When not
+                given, falls back to the ``BUBBA_DB_PATH`` environment variable,
+                then to ``~/.bubba/diagnoses.db``. The env var lets tests point
+                at a temporary database without changing app behaviour.
         """
+        if db_path is None:
+            db_path = os.environ.get("BUBBA_DB_PATH", self.DEFAULT_DB_PATH)
         self.db_path = Path(db_path).expanduser()
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
         self._init_db()
@@ -122,6 +130,8 @@ class InvestigationRepository:
         Returns:
             List of investigation summaries (id, title, symptom, root_cause, status)
         """
+        if not query.strip():
+            return []
         pattern = f"%{query}%"
         with sqlite3.connect(self.db_path) as conn:
             rows = conn.execute("""
@@ -152,6 +162,8 @@ class InvestigationRepository:
         Returns:
             List of investigation summaries
         """
+        if not query.strip():
+            return []
         pattern = f"%{query}%"
         with sqlite3.connect(self.db_path) as conn:
             rows = conn.execute("""
