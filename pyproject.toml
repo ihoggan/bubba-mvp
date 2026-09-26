@@ -3,7 +3,7 @@ name = "bubba-mvp"
 version = "0.1.0"
 description = "Bubba MVP - RDR (Ripple Down Rules) troubleshooting engine for IT technicians"
 authors = [
-    { name = "Iain Hoggan", email = "ihoggan@example.com" }
+    { name = "Iain Hoggan", email = "33704736+ihoggan@users.noreply.github.com" }
 ]
 readme = "README.md"
 license = { text = "MIT" }
